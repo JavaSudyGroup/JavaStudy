@@ -1,6 +1,6 @@
 # SpringCloud
 
-# Bilibili
+# Bilibili 尚硅谷
 
 看bilibili老是SpringCloud，语言少了，思维就出来了，多行动。
 
@@ -124,7 +124,7 @@ Say Say easy, Do Do hard .
 
 ### 说起SpringCloud那些方面，可以说说这些方面。
 
-![1589039327360](SpringCloud.assets/1589039327360.png)
+![1589039327360](../media/pictures/SpringCloud.assets/1589039327360.png)
 
 
 
@@ -132,7 +132,7 @@ Say Say easy, Do Do hard .
 
 如果技术用老的，那么用zookeeper，最好用的是Nacos
 
-![1589093101330](SpringCloud.assets/1589093101330.png)
+![1589093101330](../media/pictures/SpringCloud.assets/1589093101330.png)
 
 ### 代码构建
 
@@ -198,17 +198,17 @@ Say Say easy, Do Do hard .
 
 - 然后修改设置 compiler  ABCD
 
-![1589956868025](SpringCloud.assets/1589956868025.png)
+![1589956868025](../media/pictures/SpringCloud.assets/1589956868025.png)
 
 - ctrl+ shift + alt  + /
 
-  ![1589956993325](SpringCloud.assets/1589956993325.png)
+  ![1589956993325](../media/pictures/SpringCloud.assets/1589956993325.png)
 
   下面这几个打钩：
 
-![1589957071222](SpringCloud.assets/1589957071222.png)
+![1589957071222](../media/pictures/SpringCloud.assets/1589957071222.png)
 
-![1589957131580](SpringCloud.assets/1589957131580.png)
+![1589957131580](../media/pictures/SpringCloud.assets/1589957131580.png)
 
 - 然后重启idea
 
@@ -218,7 +218,7 @@ Say Say easy, Do Do hard .
 
 ### 消费
 
-![1589962499895](SpringCloud.assets/1589962499895.png)
+![1589962499895](../media/pictures/SpringCloud.assets/1589962499895.png)
 
 restTemplate的官方文档：
 
@@ -284,13 +284,13 @@ public class PaymentMain8001 {
 
 将注册中心启动以后，消费注册进注册中心以后，显示的名字就是yml里面配置的名字 
 
-![1590117896412](SpringCloud.assets/1590117896412.png)
+![1590117896412](../media/pictures/SpringCloud.assets/1590117896412.png)
 
 
 
 ### 集群Eureka搭建和部署
 
-![1590156366126](SpringCloud.assets/1590156366126.png)
+![1590156366126](../media/pictures/SpringCloud.assets/1590156366126.png)
 
 
 
@@ -331,11 +331,11 @@ eureka:
 
 配置好了的话，是这个样子的
 
-![1590206266102](SpringCloud.assets/1590206266102.png)
+![1590206266102](../media/pictures/SpringCloud.assets/1590206266102.png)
 
 
 
-![1590206298961](SpringCloud.assets/1590206298961.png)
+![1590206298961](../media/pictures/SpringCloud.assets/1590206298961.png)
 
 
 
@@ -351,7 +351,7 @@ application.yml 里面的 配置文件 端口改成8002
 
 项目启动成功以后，注册中心服务提供者里面有两个服务。
 
-![1590290371971](SpringCloud.assets/1590290371971.png)
+![1590290371971](../media/pictures/SpringCloud.assets/1590290371971.png)
 
 
 
@@ -363,9 +363,9 @@ application.yml 里面的 配置文件 端口改成8002
 public static final String PAYMENT_URL = "http://CLOUD-PAYMENT-SERVICE";
 ```
 
-![1590290929821](SpringCloud.assets/1590290929821.png)
+![1590290929821](../media/pictures/SpringCloud.assets/1590290929821.png)
 
-![1590290849023](SpringCloud.assets/1590290849023.png)
+![1590290849023](../media/pictures/SpringCloud.assets/1590290849023.png)
 
 
 
@@ -388,7 +388,7 @@ public class ApplicationContextConfig {
 
 现在的架构：
 
-![1590291514784](SpringCloud.assets/1590291514784.png)
+![1590291514784](../media/pictures/SpringCloud.assets/1590291514784.png)
 
 ### 完善
 
@@ -401,7 +401,7 @@ instance:
 
 这样的话 在注册中心 就可以看到  名称发生了变化
 
-![1590292364166](SpringCloud.assets/1590292364166.png)
+![1590292364166](../media/pictures/SpringCloud.assets/1590292364166.png)
 
 
 
@@ -411,7 +411,7 @@ instance:
 http://localhost:8001/actuator/health   //这个地址
 ```
 
-![1590292904941](SpringCloud.assets/1590292904941.png)
+![1590292904941](../media/pictures/SpringCloud.assets/1590292904941.png)
 
 
 
@@ -423,653 +423,822 @@ instance:
     prefer-ip-address: true #访问路径可以显示ip
 ```
 
-![1590293751939](SpringCloud.assets/1590293751939.png)
+![1590293751939](../media/pictures/SpringCloud.assets/1590293751939.png)
 
-![1590293660041](SpringCloud.assets/1590293660041.png)
+![1590293660041](../media/pictures/SpringCloud.assets/1590293660041.png)
 
 
 
 ### 服务发现discover
 
-在controller里面重新写了个方法 
+在controller里面重新写了个方法 ，写好方法，然后调用，会将两个服务名字打印出来。
 
+![1590326623829](../media/pictures/SpringCloud.assets/1590326623829.png)
 
+### Eureka自我保护
 
-# JavaGuide
+某时刻某一个微服务不可用了，Eureka不会立即清理，依旧会对该微服务的信息进行保存。
 
-> 本文基于 Spring Cloud Netflix 。Spring Cloud Alibaba 也是非常不错的选择哦！
->
-> 授权转载自：https://juejin.im/pos t/5de2553e5188256e885f4fa3
+通俗举例子就是：因为疫情，如果你没交物业费，物业公司不会立即将你清退，迟几天交也行。
 
-首先我给大家看一张图，如果大家对这张图有些地方不太理解的话，我希望你们看完我这篇文章会恍然大悟。
 
-![Spring Cloud 总体架构](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-11/spring-cloud总体架构.jpg)
 
-## 什么是Spring cloud
+这是一种高可用的设计思想，如果出现网络延时，心跳暂时没有收到，也不会立即停止。
 
-> 构建分布式系统不需要复杂和容易出错。Spring Cloud 为最常见的分布式系统模式提供了一种简单且易于接受的编程模型，帮助开发人员构建有弹性的、可靠的、协调的应用程序。Spring Cloud 构建于 Spring Boot 之上，使得开发者很容易入手并快速应用于生产中。
+![1590395847445](../media/pictures/SpringCloud.assets/1590395847445.png)
 
-官方果然官方，介绍都这么有板有眼的。
 
-我所理解的 `Spring Cloud` 就是微服务系统架构的一站式解决方案，在平时我们构建微服务的过程中需要做如 **服务发现注册** 、**配置中心** 、**消息总线** 、**负载均衡** 、**断路器** 、**数据监控** 等操作，而 Spring Cloud 为我们提供了一套简易的编程模型，使我们能在 Spring Boot 的基础上轻松地实现微服务项目的构建。
 
-## Spring Cloud 的版本
+这就是把自我保护机制关掉以后：公司这个就是关掉的。
 
-当然这个只是个题外话。
+![1590396709900](../media/pictures/SpringCloud.assets/1590396709900.png)
 
-`Spring Cloud` 的版本号并不是我们通常见的数字版本号，而是一些很奇怪的单词。这些单词均为英国伦敦地铁站的站名。同时根据字母表的顺序来对应版本时间顺序，比如：最早 的 `Release` 版本 `Angel`，第二个 `Release` 版本 `Brixton`（英国地名），然后是 `Camden`、 `Dalston`、`Edgware`、`Finchley`、`Greenwich`、`Hoxton`。
 
-## Spring Cloud 的服务发现框架——Eureka
 
-> `Eureka`是基于`REST`（代表性状态转移）的服务，主要在 `AWS` 云中用于定位服务，以实现负载均衡和中间层服务器的故障转移。我们称此服务为`Eureka`服务器。Eureka还带有一个基于 `Java` 的客户端组件 `Eureka Client`，它使与服务的交互变得更加容易。客户端还具有一个内置的负载平衡器，可以执行基本的循环负载平衡。在 `Netflix`，更复杂的负载均衡器将 `Eureka` 包装起来，以基于流量，资源使用，错误条件等多种因素提供加权负载均衡，以提供出色的弹性。
+## Zookeeper服务注册与发现
 
-总的来说，`Eureka` 就是一个服务发现框架。何为服务，何又为发现呢？
+### zookeeper注册中心
 
-举一个生活中的例子，就比如我们平时租房子找中介的事情。
+首先在linux上面部署zookeeper，在安全组里面开放2181端口。
 
-在没有中介的时候我们需要一个一个去寻找是否有房屋要出租的房东，这显然会非常的费力，一你找凭一个人的能力是找不到很多房源供你选择，再者你也懒得这么找下去(找了这么久，没有合适的只能将就)。**这里的我们就相当于微服务中的 `Consumer` ，而那些房东就相当于微服务中的 `Provider` 。消费者 `Consumer` 需要调用提供者 `Provider` 提供的一些服务，就像我们现在需要租他们的房子一样。**
 
-但是如果只是租客和房东之间进行寻找的话，他们的效率是很低的，房东找不到租客赚不到钱，租客找不到房东住不了房。所以，后来房东肯定就想到了广播自己的房源信息(比如在街边贴贴小广告)，这样对于房东来说已经完成他的任务(将房源公布出去)，但是有两个问题就出现了。第一、其他不是租客的都能收到这种租房消息，这在现实世界没什么，但是在计算机的世界中就会出现 **资源消耗** 的问题了。第二、租客这样还是很难找到你，试想一下我需要租房，我还需要东一个西一个地去找街边小广告，麻不麻烦？
 
-那怎么办呢？我们当然不会那么傻乎乎的，第一时间就是去找 **中介** 呀，它为我们提供了统一房源的地方，我们消费者只需要跑到它那里去找就行了。而对于房东来说，他们也只需要把房源在中介那里发布就行了。
+如果在虚拟机中的CentOS里面安装zookeeper的话，需要双方可以ping通，同时要关闭虚拟机的防火墙。
 
-![](SpringCloud.assets/4d161e2950414113834f2f0a8fc2c16c-new-imaged17347a0-e653-4830-9542-3d7ae4305b2b.png)
 
-那么现在，我们的模式就是这样的了。
 
-![](SpringCloud.assets/24382ce6bbd44932ac38b1accade12d1-new-image2ff8affc-6f1d-49de-a8c3-801e7bad2b11.png)
+### 服务提供者
 
-但是，这个时候还会出现一些问题。
+启动项目发现 有时候会报错 
 
-1. 房东注册之后如果不想卖房子了怎么办？我们是不是需要让房东 **定期续约** ？如果房东不进行续约是不是要将他们从中介那里的注册列表中 **移除** 。
-2. 租客是不是也要进行 **注册** 呢？不然合同乙方怎么来呢？
-3. 中介可不可以做 **连锁店** 呢？如果这一个店因为某些不可抗力因素而无法使用，那么我们是否可以换一个连锁店呢？
+因为框架原来带来一个zookeeper包，版本是
 
-针对上面的问题我们来重新构建一下上面的模式图
+![1591147867297](../media/pictures/SpringCloud.assets/1591147867297.png)
 
-![租房-中介模式图](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-11/租房-中介模式图.jpg)
 
-好了，举完这个:chestnut:我们就可以来看关于 `Eureka` 的一些基础概念了，你会发现这东西理解起来怎么这么简单。:punch::punch::punch:
 
-**服务发现**：其实就是一个“中介”，整个过程中有三个角色：**服务提供者(出租房子的)、服务消费者(租客)、服务中介(房屋中介)**。
+需要排除框架里面的版本：
 
-**服务提供者**： 就是提供一些自己能够执行的一些服务给外界。
-
-**服务消费者**： 就是需要使用一些服务的“用户”。
-
-**服务中介**： 其实就是服务提供者和服务消费者之间的“桥梁”，服务提供者可以把自己注册到服务中介那里，而服务消费者如需要消费一些服务(使用一些功能)就可以在服务中介中寻找注册在服务中介的服务提供者。
-
-**服务注册 Register**：
-
-官方解释：当 `Eureka` 客户端向 `Eureka Server` 注册时，它提供自身的**元数据**，比如IP地址、端口，运行状况指示符URL，主页等。
-
-结合中介理解：房东 (提供者 `Eureka Client Provider`)在中介 (服务器 `Eureka Server`) 那里登记房屋的信息，比如面积，价格，地段等等(元数据 `metaData`)。
-
-**服务续约 Renew**：
-
-官方解释：**`Eureka` 客户会每隔30秒(默认情况下)发送一次心跳来续约**。 通过续约来告知 `Eureka Server` 该 `Eureka` 客户仍然存在，没有出现问题。 正常情况下，如果 `Eureka Server` 在90秒没有收到 `Eureka` 客户的续约，它会将实例从其注册表中删除。
-
-结合中介理解：房东 (提供者 `Eureka Client Provider`) 定期告诉中介 (服务器 `Eureka Server`) 我的房子还租(续约) ，中介 (服务器`Eureka Server`) 收到之后继续保留房屋的信息。
-
-**获取注册列表信息 Fetch Registries**： 
-
-官方解释：`Eureka` 客户端从服务器获取注册表信息，并将其缓存在本地。客户端会使用该信息查找其他服务，从而进行远程调用。该注册列表信息定期（每30秒钟）更新一次。每次返回注册列表信息可能与 `Eureka` 客户端的缓存信息不同, `Eureka` 客户端自动处理。如果由于某种原因导致注册列表信息不能及时匹配，`Eureka` 客户端则会重新获取整个注册表信息。 `Eureka` 服务器缓存注册列表信息，整个注册表以及每个应用程序的信息进行了压缩，压缩内容和没有压缩的内容完全相同。`Eureka` 客户端和 `Eureka` 服务器可以使用JSON / XML格式进行通讯。在默认的情况下 `Eureka` 客户端使用压缩 `JSON` 格式来获取注册列表的信息。
-
-结合中介理解：租客(消费者 `Eureka Client Consumer`) 去中介 (服务器 `Eureka Server`) 那里获取所有的房屋信息列表 (客户端列表 `Eureka Client List`) ，而且租客为了获取最新的信息会定期向中介 (服务器 `Eureka Server`) 那里获取并更新本地列表。
-
-**服务下线 Cancel**：
-
-官方解释：Eureka客户端在程序关闭时向Eureka服务器发送取消请求。 发送请求后，该客户端实例信息将从服务器的实例注册表中删除。该下线请求不会自动完成，它需要调用以下内容：`DiscoveryManager.getInstance().shutdownComponent();`
-
-结合中介理解：房东 (提供者 `Eureka Client Provider`) 告诉中介  (服务器 `Eureka Server`) 我的房子不租了，中介之后就将注册的房屋信息从列表中剔除。
-
-**服务剔除 Eviction**：
-
-官方解释：在默认的情况下，**当Eureka客户端连续90秒(3个续约周期)没有向Eureka服务器发送服务续约，即心跳，Eureka服务器会将该服务实例从服务注册列表删除**，即服务剔除。
-
-结合中介理解：房东(提供者 `Eureka Client Provider`) 会定期联系 中介  (服务器 `Eureka Server`) 告诉他我的房子还租(续约)，如果中介  (服务器 `Eureka Server`) 长时间没收到提供者的信息，那么中介会将他的房屋信息给下架(服务剔除)。
-
-下面就是 `Netflix` 官方给出的 `Eureka` 架构图，你会发现和我们前面画的中介图别无二致。
-
-![Eureka架构图](SpringCloud.assets/5d723c49eca1468ab7b89af06743023c-new-imageb8aa3d41-fad4-4b38-add9-c304930ab285.png)
-
-当然，可以充当服务发现的组件有很多：`Zookeeper` ，`Consul` ， `Eureka` 等。
-
-更多关于 `Eureka` 的知识(自我保护，初始注册策略等等)可以自己去官网查看，或者查看我的另一篇文章 [深入理解 Eureka](<https://juejin.im/post/5dd497e3f265da0ba7718018>)。
-
-## 负载均衡之 Ribbon
-
-### 什么是 `RestTemplate`?
-
-不是讲 `Ribbon` 么？怎么扯到了 `RestTemplate` 了？你先别急，听我慢慢道来。
-
-我不听我不听我不听:hear_no_evil::hear_no_evil::hear_no_evil:。
-
-我就说一句！**`RestTemplate`是`Spring`提供的一个访问Http服务的客户端类**，怎么说呢？就是微服务之间的调用是使用的 `RestTemplate` 。比如这个时候我们 消费者B 需要调用 提供者A 所提供的服务我们就需要这么写。如我下面的伪代码。
-
-```java
-@Autowired
-private RestTemplate restTemplate;
-// 这里是提供者A的ip地址，但是如果使用了 Eureka 那么就应该是提供者A的名称
-private static final String SERVICE_PROVIDER_A = "http://localhost:8081";
-
-@PostMapping("/judge")
-public boolean judge(@RequestBody Request request) {
-    String url = SERVICE_PROVIDER_A + "/service1";
-    return restTemplate.postForObject(url, request, Boolean.class);
-}
-```
-
- 如果你对源码感兴趣的话，你会发现上面我们所讲的 `Eureka` 框架中的 **注册**、**续约** 等，底层都是使用的 `RestTemplate` 。
-
-### 为什么需要 Ribbon？
-
-`Ribbon`  是 `Netflix` 公司的一个开源的负载均衡 项目，是一个客户端/进程内负载均衡器，**运行在消费者端**。
-
-我们再举个:chestnut:，比如我们设计了一个秒杀系统，但是为了整个系统的 **高可用** ，我们需要将这个系统做一个集群，而这个时候我们消费者就可以拥有多个秒杀系统的调用途径了，如下图。
-
-<img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-11/秒杀系统-ribbon.jpg" style="zoom:50%;" />
-
-如果这个时候我们没有进行一些 **均衡操作** ，如果我们对 `秒杀系统1` 进行大量的调用，而另外两个基本不请求，就会导致 `秒杀系统1` 崩溃，而另外两个就变成了傀儡，那么我们为什么还要做集群，我们高可用体现的意义又在哪呢？
-
-所以 `Ribbon` 出现了，注意我们上面加粗的几个字——**运行在消费者端**。指的是，`Ribbon` 是运行在消费者端的负载均衡器，如下图。
-
-<img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-11/秒杀系统-ribbon2.jpg" style="zoom:50%;" />
-
-其工作原理就是 `Consumer` 端获取到了所有的服务列表之后，在其**内部**使用**负载均衡算法**，进行对多个系统的调用。
-
-### Nginx 和 Ribbon 的对比
-
-提到 **负载均衡** 就不得不提到大名鼎鼎的 `Nignx` 了，而和 `Ribbon` 不同的是，它是一种**集中式**的负载均衡器。
-
-何为集中式呢？简单理解就是 **将所有请求都集中起来，然后再进行负载均衡**。如下图。
-
-<img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-11/nginx-vs-ribbon1.jpg" style="zoom:50%;" />
-
-我们可以看到 `Nginx` 是接收了所有的请求进行负载均衡的，而对于 `Ribbon` 来说它是在消费者端进行的负载均衡。如下图。
-
-<img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-11/nginx-vs-ribbon2.jpg" style="zoom:50%;" />
-
-> 请注意 `Request` 的位置，在 `Nginx` 中请求是先进入负载均衡器，而在 `Ribbon` 中是先在客户端进行负载均衡才进行请求的。
-
-### Ribbon 的几种负载均衡算法
-
-负载均衡，不管 `Nginx` 还是 `Ribbon` 都需要其算法的支持，如果我没记错的话 `Nginx` 使用的是 轮询和加权轮询算法。而在 `Ribbon` 中有更多的负载均衡调度算法，其默认是使用的 `RoundRobinRule` 轮询策略。
-
-- **`RoundRobinRule`**：轮询策略。`Ribbon` 默认采用的策略。若经过一轮轮询没有找到可用的 `provider`，其最多轮询 10 轮。若最终还没有找到，则返回 `null`。
-- **`RandomRule`**: 随机策略，从所有可用的 `provider` 中随机选择一个。
-- **`RetryRule`**: 重试策略。先按照 `RoundRobinRule` 策略获取 `provider`，若获取失败，则在指定的时限内重试。默认的时限为 500 毫秒。
-
-🐦🐦🐦 还有很多，这里不一一举:chestnut:了，你最需要知道的是默认轮询算法，并且可以更换默认的负载均衡算法，只需要在配置文件中做出修改就行。
-
-```yaml
-providerName:
-  ribbon:
-    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
-```
-
-当然，在 `Ribbon` 中你还可以**自定义负载均衡算法**，你只需要实现 `IRule` 接口，然后修改配置文件或者自定义 `Java Config` 类。
-
-## 什么是 Open Feign
-
-有了 `Eureka`  ，`RestTemplate` ，`Ribbon`，  我们就可以愉快地进行服务间的调用了，但是使用 `RestTemplate` 还是不方便，我们每次都要进行这样的调用。
-
-```java
-@Autowired
-private RestTemplate restTemplate;
-// 这里是提供者A的ip地址，但是如果使用了 Eureka 那么就应该是提供者A的名称
-private static final String SERVICE_PROVIDER_A = "http://localhost:8081";
-
-@PostMapping("/judge")
-public boolean judge(@RequestBody Request request) {
-    String url = SERVICE_PROVIDER_A + "/service1";
-    // 是不是太麻烦了？？？每次都要 url、请求、返回类型的 
-    return restTemplate.postForObject(url, request, Boolean.class);
-}
-```
-
-这样每次都调用 `RestRemplate` 的 `API` 是否太麻烦，我能不能像**调用原来代码一样进行各个服务间的调用呢？**
-
-:bulb::bulb::bulb:聪明的小朋友肯定想到了，那就用 **映射** 呀，就像域名和IP地址的映射。我们可以将被调用的服务代码映射到消费者端，这样我们就可以 **“无缝开发” **啦。
-
-> `OpenFeign` 也是运行在消费者端的，使用 `Ribbon` 进行负载均衡，所以 `OpenFeign` 直接内置了 `Ribbon`。
-
-在导入了 `Open Feign` 之后我们就可以进行愉快编写  `Consumer` 端代码了。
-
-```java
-// 使用 @FeignClient 注解来指定提供者的名字
-@FeignClient(value = "eureka-client-provider")
-public interface TestClient {
-    // 这里一定要注意需要使用的是提供者那端的请求相对路径，这里就相当于映射了
-    @RequestMapping(value = "/provider/xxx",
-    method = RequestMethod.POST)
-    CommonResponse<List<Plan>> getPlans(@RequestBody planGetRequest request);
-}
-```
-
-然后我们在 `Controller` 就可以像原来调用 `Service` 层代码一样调用它了。
-
-```java
-@RestController
-public class TestController {
-    // 这里就相当于原来自动注入的 Service
-    @Autowired
-    private TestClient testClient;
-    // controller 调用 service 层代码
-    @RequestMapping(value = "/test", method = RequestMethod.POST)
-    public CommonResponse<List<Plan>> get(@RequestBody planGetRequest request) {
-        return testClient.getPlans(request);
-    }
-}
-```
-
-## 必不可少的 Hystrix
-
-### 什么是 Hystrix之熔断和降级
-
-> 在分布式环境中，不可避免地会有许多服务依赖项中的某些失败。Hystrix是一个库，可通过添加等待时间容限和容错逻辑来帮助您控制这些分布式服务之间的交互。Hystrix通过隔离服务之间的访问点，停止服务之间的级联故障并提供后备选项来实现此目的，所有这些都可以提高系统的整体弹性。
-
-总体来说 `Hystrix` 就是一个能进行 **熔断** 和 **降级** 的库，通过使用它能提高整个系统的弹性。
-
-那么什么是 熔断和降级 呢？再举个:chestnut:，此时我们整个微服务系统是这样的。服务A调用了服务B，服务B再调用了服务C，但是因为某些原因，服务C顶不住了，这个时候大量请求会在服务C阻塞。
-
-<img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-11/Hystrix1.jpg" style="zoom:50%;" />
-
-服务C阻塞了还好，毕竟只是一个系统崩溃了。但是请注意这个时候因为服务C不能返回响应，那么服务B调用服务C的的请求就会阻塞，同理服务B阻塞了，那么服务A也会阻塞崩溃。
-
-> 请注意，为什么阻塞会崩溃。因为这些请求会消耗占用系统的线程、IO 等资源，消耗完你这个系统服务器不就崩了么。
-
-<img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-11/Hystrix2.jpg" style="zoom:50%;" />
-
-这就叫 **服务雪崩**。妈耶，上面两个 **熔断** 和 **降级** 你都没给我解释清楚，你现在又给我扯什么 **服务雪崩** ？:tired_face::tired_face::tired_face:
-
-别急，听我慢慢道来。
-
-![](SpringCloud.assets/513d7e7f6d574fd799195d05556f4aa7-new-image9265b6bd-41ca-4e62-86f3-4341e5bdbe6c.png)
-
-不听我也得讲下去！
-
-所谓 **熔断** 就是服务雪崩的一种有效解决方案。当指定时间窗内的请求失败率达到设定阈值时，系统将通过 **断路器** 直接将此请求链路断开。
-
-也就是我们上面服务B调用服务C在指定时间窗内，调用的失败率到达了一定的值，那么 `Hystrix` 则会自动将 服务B与C 之间的请求都断了，以免导致服务雪崩现象。
-
-其实这里所讲的 **熔断** 就是指的 `Hystrix` 中的 **断路器模式** ，你可以使用简单的 `@HystrixCommand` 注解来标注某个方法，这样 `Hystrix` 就会使用 **断路器** 来“包装”这个方法，每当调用时间超过指定时间时(默认为1000ms)，断路器将会中断对这个方法的调用。
-
-当然你可以对这个注解的很多属性进行设置，比如设置超时时间，像这样。
-
-```java
-@HystrixCommand(
-    commandProperties = {@HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds",value = "1200")}
-)
-public List<Xxx> getXxxx() {
-    // ...省略代码逻辑
-}
-```
-
-但是，我查阅了一些博客，发现他们都将 **熔断** 和 **降级** 的概念混淆了，以我的理解，**降级是为了更好的用户体验，当一个方法调用异常时，通过执行另一种代码逻辑来给用户友好的回复**。这也就对应着 `Hystrix` 的 **后备处理** 模式。你可以通过设置 `fallbackMethod` 来给一个方法设置备用的代码逻辑。比如这个时候有一个热点新闻出现了，我们会推荐给用户查看详情，然后用户会通过id去查询新闻的详情，但是因为这条新闻太火了(比如最近什么*易对吧)，大量用户同时访问可能会导致系统崩溃，那么我们就进行 **服务降级** ，一些请求会做一些降级处理比如当前人数太多请稍后查看等等。
-
-```java
-// 指定了后备方法调用
-@HystrixCommand(fallbackMethod = "getHystrixNews")
-@GetMapping("/get/news")
-public News getNews(@PathVariable("id") int id) {
-    // 调用新闻系统的获取新闻api 代码逻辑省略
-}
-// 
-public News getHystrixNews(@PathVariable("id") int id) {
-    // 做服务降级
-    // 返回当前人数太多，请稍后查看
-}
-```
-
-### 什么是Hystrix之其他
-
-我在阅读 《Spring微服务实战》这本书的时候还接触到了一个 **舱壁模式** 的概念。在不使用舱壁模式的情况下，服务A调用服务B，这种调用默认的是 **使用同一批线程来执行** 的，而在一个服务出现性能问题的时候，就会出现所有线程被刷爆并等待处理工作，同时阻塞新请求，最终导致程序崩溃。而舱壁模式会将远程资源调用隔离在他们自己的线程池中，以便可以控制单个表现不佳的服务，而不会使该程序崩溃。
-
-具体其原理我推荐大家自己去了解一下，本篇文章中对 **舱壁模式** 不做过多解释。当然还有 **`Hystrix` 仪表盘**，它是**用来实时监控 `Hystrix` 的各项指标信息的**，这里我将这个问题也抛出去，希望有不了解的可以自己去搜索一下。
-
-## 微服务网关——Zuul
-
-> ZUUL 是从设备和 web 站点到 Netflix 流应用后端的所有请求的前门。作为边界服务应用，ZUUL 是为了实现动态路由、监视、弹性和安全性而构建的。它还具有根据情况将请求路由到多个 Amazon Auto Scaling Groups（亚马逊自动缩放组，亚马逊的一种云计算方式） 的能力
-
-在上面我们学习了 `Eureka` 之后我们知道了 *服务提供者*  是 *消费者* 通过 `Eureka Server` 进行访问的，即 `Eureka Server` 是 *服务提供者* 的统一入口。那么整个应用中存在那么多 *消费者* 需要用户进行调用，这个时候用户该怎样访问这些 *消费者工程* 呢？当然可以像之前那样直接访问这些工程。但这种方式没有统一的消费者工程调用入口，不便于访问与管理，而 Zuul 就是这样的一个对于 *消费者* 的统一入口。
-
-> 如果学过前端的肯定都知道 Router 吧，比如 Flutter 中的路由，Vue，React中的路由，用了 Zuul 你会发现在路由功能方面和前端配置路由基本是一个理。:smile: 我偶尔撸撸 Flutter。
-
-大家对网关应该很熟吧，简单来讲网关是系统唯一对外的入口，介于客户端与服务器端之间，用于对请求进行**鉴权**、**限流**、 **路由**、**监控**等功能。
-
-<img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-11/zuul-sj22o93nfdsjkdsf.jpg" style="zoom:50%;" />
-
-没错，网关有的功能，`Zuul` 基本都有。而 `Zuul` 中最关键的就是 **路由和过滤器** 了，在官方文档中 `Zuul` 的标题就是
-
-> Router and Filter : Zuul
-
-### Zuul 的路由功能
-
-#### 简单配置
-
-本来想给你们复制一些代码，但是想了想，因为各个代码配置比较零散，看起来也比较零散，我决定还是给你们画个图来解释吧。
-
-> 请不要因为我这么好就给我点赞 :thumbsup: 。 疯狂暗示。
-
-比如这个时候我们已经向 `Eureka Server` 注册了两个 `Consumer` 、三个 `Provicer` ，这个时候我们再加个 `Zuul` 网关应该变成这样子了。
-
-<img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-11/zuul-sj22o93nfdsjkdsf2312.jpg" style="zoom:50%;" />
-
-emmm，信息量有点大，我来解释一下。关于前面的知识我就不解释了:neutral_face:。
-
-首先，`Zuul` 需要向 `Eureka` 进行注册，注册有啥好处呢？
-
-你傻呀，`Consumer` 都向 `Eureka Server` 进行注册了，我网关是不是只要注册就能拿到所有 `Consumer` 的信息了？
-
-拿到信息有什么好处呢？
-
-我拿到信息我是不是可以获取所有的 `Consumer` 的元数据(名称，ip，端口)？
-
-拿到这些元数据有什么好处呢？拿到了我们是不是直接可以做**路由映射**？比如原来用户调用 `Consumer1` 的接口 `localhost:8001/studentInfo/update` 这个请求，我们是不是可以这样进行调用了呢？`localhost:9000/consumer1/studentInfo/update` 呢？你这样是不是恍然大悟了？
-
-> 这里的url为了让更多人看懂所以没有使用 restful 风格。
-
-上面的你理解了，那么就能理解关于 `Zuul` 最基本的配置了，看下面。
-
-```yaml
-server:
-  port: 9000
-eureka:
-  client:
-    service-url:
-      # 这里只要注册 Eureka 就行了
-      defaultZone: http://localhost:9997/eureka
-```
-
-然后在启动类上加入 `@EnableZuulProxy` 注解就行了。没错，就是那么简单:smiley:。
-
-#### 统一前缀
-
-这个很简单，就是我们可以在前面加一个统一的前缀，比如我们刚刚调用的是 `localhost:9000/consumer1/studentInfo/update`，这个时候我们在 `yaml` 配置文件中添加如下。
-
-```yaml
-zuul:
-  prefix: /zuul
-```
-
-这样我们就需要通过 `localhost:9000/zuul/consumer1/studentInfo/update` 来进行访问了。
-
-#### 路由策略配置
-
-你会发现前面的访问方式(直接使用服务名)，需要将微服务名称暴露给用户，会存在安全性问题。所以，可以自定义路径来替代微服务名称，即自定义路由策略。
-
-```yaml
-zuul:
-  routes:
-    consumer1: /FrancisQ1/**
-    consumer2: /FrancisQ2/**
-```
-
-这个时候你就可以使用 ` `localhost:9000/zuul/FrancisQ1/studentInfo/update` 进行访问了。
-
-#### 服务名屏蔽
-
-这个时候你别以为你好了，你可以试试，在你配置完路由策略之后使用微服务名称还是可以访问的，这个时候你需要将服务名屏蔽。
-
-```yaml
-zuul:
-  ignore-services: "*"
-```
-
-#### 路径屏蔽
-
-`Zuul` 还可以指定屏蔽掉的路径 URI，即只要用户请求中包含指定的 URI 路径，那么该请求将无法访问到指定的服务。通过该方式可以限制用户的权限。
-
-```yaml
-zuul:
-  ignore-patterns: **/auto/**
-```
-
-这样关于 auto 的请求我们就可以过滤掉了。
-
-> ** 代表匹配多级任意路径
->
-> *代表匹配一级任意路径
-
-#### 敏感请求头屏蔽
-
-默认情况下，像 `Cookie`、`Set-Cookie` 等敏感请求头信息会被 `zuul` 屏蔽掉，我们可以将这些默认屏蔽去掉，当然，也可以添加要屏蔽的请求头。
-
-### Zuul 的过滤功能 
-
-如果说，路由功能是 `Zuul` 的基操的话，那么**过滤器**就是 `Zuul`的利器了。毕竟所有请求都经过网关(Zuul)，那么我们可以进行各种过滤，这样我们就能实现 **限流**，**灰度发布**，**权限控制** 等等。
-
-#### 简单实现一个请求时间日志打印
-
-要实现自己定义的 `Filter` 我们只需要继承 `ZuulFilter` 然后将这个过滤器类以 `@Component` 注解加入 Spring 容器中就行了。
-
-在给你们看代码之前我先给你们解释一下关于过滤器的一些注意点。
-
-<img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-11/zuul-sj22o93nfdsjkdsf2312244.jpg" style="zoom:50%;" />
-
-过滤器类型：`Pre`、`Routing`、`Post`。前置`Pre`就是在请求之前进行过滤，`Routing`路由过滤器就是我们上面所讲的路由策略，而`Post`后置过滤器就是在 `Response` 之前进行过滤的过滤器。你可以观察上图结合着理解，并且下面我会给出相应的注释。
-
-```java
-// 加入Spring容器
-@Component
-public class PreRequestFilter extends ZuulFilter {
-    // 返回过滤器类型 这里是前置过滤器
-    @Override
-    public String filterType() {
-        return FilterConstants.PRE_TYPE;
-    }
-    // 指定过滤顺序 越小越先执行，这里第一个执行
-    // 当然不是只真正第一个 在Zuul内置中有其他过滤器会先执行
-    // 那是写死的 比如 SERVLET_DETECTION_FILTER_ORDER = -3
-    @Override
-    public int filterOrder() {
-        return 0;
-    }
-    // 什么时候该进行过滤
-    // 这里我们可以进行一些判断，这样我们就可以过滤掉一些不符合规定的请求等等
-    @Override
-    public boolean shouldFilter() {
-        return true;
-    }
-    // 如果过滤器允许通过则怎么进行处理
-    @Override
-    public Object run() throws ZuulException {
-        // 这里我设置了全局的RequestContext并记录了请求开始时间
-        RequestContext ctx = RequestContext.getCurrentContext();
-        ctx.set("startTime", System.currentTimeMillis());
-        return null;
-    }
-}
+```xml
+<!--SpringBoot整合Zookeeper客户端-->
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-zookeeper-discovery</artifactId>
+    <exclusions>
+        <!--先排除自带的zookeeper3.5.3-->
+        <exclusion>
+            <groupId>org.apache.zookeeper</groupId>
+            <artifactId>zookeeper</artifactId>
+        </exclusion>
+    </exclusions>
+</dependency>
 ```
 
 
 
-```java
-// lombok的日志
-@Slf4j
-// 加入 Spring 容器
-@Component
-public class AccessLogFilter extends ZuulFilter {
-    // 指定该过滤器的过滤类型
-    // 此时是后置过滤器
-    @Override
-    public String filterType() {
-        return FilterConstants.POST_TYPE;
-    }
-    // SEND_RESPONSE_FILTER_ORDER 是最后一个过滤器
-    // 我们此过滤器在它之前执行
-    @Override
-    public int filterOrder() {
-        return FilterConstants.SEND_RESPONSE_FILTER_ORDER - 1;
-    }
-    @Override
-    public boolean shouldFilter() {
-        return true;
-    }
-    // 过滤时执行的策略
-    @Override
-    public Object run() throws ZuulException {
-        RequestContext context = RequestContext.getCurrentContext();
-        HttpServletRequest request = context.getRequest();
-        // 从RequestContext获取原先的开始时间 并通过它计算整个时间间隔
-        Long startTime = (Long) context.get("startTime");
-        // 这里我可以获取HttpServletRequest来获取URI并且打印出来
-        String uri = request.getRequestURI();
-        long duration = System.currentTimeMillis() - startTime;
-        log.info("uri: " + uri + ", duration: " + duration / 100 + "ms");
-        return null;
-    }
-}
+启动完成项目以后 
+
+可以在阿里云服务器上面看一下,如果是下面这样 说明注册成功啦。
+
+```
+ls /
+[services,zookeeper]
 ```
 
-上面就简单实现了请求时间日志打印功能，你有没有感受到 `Zuul` 过滤功能的强大了呢？
+![1591148436300](../media/pictures/SpringCloud.assets/1591148436300.png)
 
-没有？好的、那我们再来。
+```
+ls /services
+[cloud-provider-payment]
+```
 
-#### 令牌桶限流
+![1591148537228](../media/pictures/SpringCloud.assets/1591148537228.png)
 
-当然不仅仅是令牌桶限流方式，`Zuul` 只要是限流的活它都能干，这里我只是简单举个:chestnut:。
+服务器访问这个 出现下面这个 就算成功啦
 
-<img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-11/zuui-令牌桶限流.jpg" alt="令牌桶限流" style="zoom:50%;" />
+![1591148666900](../media/pictures/SpringCloud.assets/1591148666900.png)
 
-我先来解释一下什么是 **令牌桶限流** 吧。
+还可以访问里面：可以看到流水号
 
-首先我们会有个桶，如果里面没有满那么就会以一定 **固定的速率** 会往里面放令牌，一个请求过来首先要从桶中获取令牌，如果没有获取到，那么这个请求就拒绝，如果获取到那么就放行。很简单吧，啊哈哈、
+![1591148895261](../media/pictures/SpringCloud.assets/1591148895261.png)
 
-下面我们就通过 `Zuul` 的前置过滤器来实现一下令牌桶限流。
 
-```java
-package com.lgq.zuul.filter;
 
-import com.google.common.util.concurrent.RateLimiter;
-import com.netflix.zuul.ZuulFilter;
-import com.netflix.zuul.context.RequestContext;
-import com.netflix.zuul.exception.ZuulException;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.cloud.netflix.zuul.filters.support.FilterConstants;
-import org.springframework.stereotype.Component;
+还可以继续往下操作：
 
-@Component
-@Slf4j
-public class RouteFilter extends ZuulFilter {
-    // 定义一个令牌桶，每秒产生2个令牌，即每秒最多处理2个请求
-    private static final RateLimiter RATE_LIMITER = RateLimiter.create(2);
-    @Override
-    public String filterType() {
-        return FilterConstants.PRE_TYPE;
-    }
+![1591149077741](../media/pictures/SpringCloud.assets/1591149077741.png)
 
-    @Override
-    public int filterOrder() {
-        return -5;
-    }
 
-    @Override
-    public Object run() throws ZuulException {
-        log.info("放行");
-        return null;
-    }
 
-    @Override
-    public boolean shouldFilter() {
-        RequestContext context = RequestContext.getCurrentContext();
-        if(!RATE_LIMITER.tryAcquire()) {
-            log.warn("访问量超载");
-            // 指定当前请求未通过过滤
-            context.setSendZuulResponse(false);
-            // 向客户端返回响应码429，请求数量过多
-            context.setResponseStatusCode(429);
-            return false;
+中间的那一部分json串，格式化以后是这样的：
+
+```json
+{"name":"cloud-provider-payment","id":"93a6b5fd-783c-4b62-910a-c3064e61ed47","address":"LAPTOP-5GQHGLD2","port":8004,"sslPort":null,"payload":{"@class":"org.springframework.cloud.zookeeper.discovery.ZookeeperInstance","id":"application-1","name":"cloud-provider-payment","metadata":{}},"registrationTimeUTC":1591148022189,"serviceType":"DYNAMIC","uriSpec":{"parts":[{"value":"scheme","variable":true},{"value":"://","variable":false},{"value":"address","variable":true},{"value":":","variable":false},{"value":"port","variable":true}]}}
+```
+
+
+
+```json
+{
+    "name":"cloud-provider-payment",
+    "id":"93a6b5fd-783c-4b62-910a-c3064e61ed47",
+    "address":"LAPTOP-5GQHGLD2",
+    "port":8004,
+    "sslPort":null,
+    "payload":{
+        "@class":"org.springframework.cloud.zookeeper.discovery.ZookeeperInstance",
+        "id":"application-1",
+        "name":"cloud-provider-payment",
+        "metadata":{
         }
-        return true;
+    },
+    "registrationTimeUTC":1591148022189,
+    "serviceType":"DYNAMIC",
+    "uriSpec":{
+        "parts":[
+            {
+                "value":"scheme",
+                "variable":true
+            },
+            {
+                "value":"://",
+                "variable":false
+            },
+            {
+                "value":"address",
+                "variable":true
+            },
+            {
+                "value":":",
+                "variable":false
+            },
+            {
+                "value":"port",
+                "variable":true
+            }]
     }
 }
 ```
 
-这样我们就能将请求数量控制在一秒两个，有没有觉得很酷？
 
-### 关于 Zuul  的其他
 
-`Zuul` 的过滤器的功能肯定不止上面我所实现的两种，它还可以实现 **权限校验**，包括我上面提到的 **灰度发布** 等等。
+zookeeper 上面注册的节点是临时的，当吧8004服务关闭以后，过一会，zookeeper上面的注册没有啦，所以是临时的。
 
-当然，`Zuul` 作为网关肯定也存在 **单点问题** ，如果我们要保证 `Zuul` 的高可用，我们就需要进行 `Zuul` 的集群配置，这个时候可以借助额外的一些负载均衡器比如 `Nginx` 。
-
-##Spring Cloud配置管理——Config
-
-### 为什么要使用进行配置管理？
-
-当我们的微服务系统开始慢慢地庞大起来，那么多 `Consumer` 、`Provider` 、`Eureka Server` 、`Zuul` 系统都会持有自己的配置，这个时候我们在项目运行的时候可能需要更改某些应用的配置，如果我们不进行配置的统一管理，我们只能**去每个应用下一个一个寻找配置文件然后修改配置文件再重启应用**。
-
-首先对于分布式系统而言我们就不应该去每个应用下去分别修改配置文件，再者对于重启应用来说，服务无法访问所以直接抛弃了可用性，这是我们更不愿见到的。
-
-那么有没有一种方法**既能对配置文件统一地进行管理，又能在项目运行时动态修改配置文件呢？**
-
-那就是我今天所要介绍的 `Spring Cloud Config` 。
-
-> 能进行配置管理的框架不止 `Spring Cloud Config` 一种，大家可以根据需求自己选择（`disconf`，阿波罗等等）。而且对于 `Config` 来说有些地方实现的不是那么尽人意。
-
-### Config 是什么
-
-> `Spring Cloud Config` 为分布式系统中的外部化配置提供服务器和客户端支持。使用 `Config` 服务器，可以在中心位置管理所有环境中应用程序的外部属性。
-
-简单来说，`Spring Cloud Config` 就是能将各个 应用/系统/模块 的配置文件存放到 **统一的地方然后进行管理**(Git 或者 SVN)。
-
-你想一下，我们的应用是不是只有启动的时候才会进行配置文件的加载，那么我们的 `Spring Cloud Config` 就暴露出一个接口给启动应用来获取它所想要的配置文件，应用获取到配置文件然后再进行它的初始化工作。就如下图。
-
-<img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-11/config-ksksks.jpg" style="zoom:50%;" />
-
-当然这里你肯定还会有一个疑问，如果我在应用运行时去更改远程配置仓库(Git)中的对应配置文件，那么依赖于这个配置文件的已启动的应用会不会进行其相应配置的更改呢？
-
-答案是不会的。
-
-什么？那怎么进行动态修改配置文件呢？这不是出现了 **配置漂移** 吗？你个渣男:rage:，你又骗我！
-
-别急嘛，你可以使用 `Webhooks` ，这是  `github` 提供的功能，它能确保远程库的配置文件更新后客户端中的配置信息也得到更新。
-
-噢噢，这还差不多。我去查查怎么用。
-
-慢着，听我说完，`Webhooks` 虽然能解决，但是你了解一下会发现它根本不适合用于生产环境，所以基本不会使用它的。
-
-![](SpringCloud.assets/1ada747175704ecba3507074847002d0-new-imagee5249fee-c5ee-4472-9983-f1bd5801387c.png)
-
-而一般我们会使用 `Bus` 消息总线 + `Spring Cloud Config` 进行配置的动态刷新。
-
-## 引出 Spring Cloud Bus
-
-> 用于将服务和服务实例与分布式消息系统链接在一起的事件总线。在集群中传播状态更改很有用（例如配置更改事件）。
-
-你可以简单理解为 `Spring Cloud Bus` 的作用就是**管理和广播分布式系统中的消息**，也就是消息引擎系统中的广播模式。当然作为 **消息总线** 的 `Spring Cloud Bus` 可以做很多事而不仅仅是客户端的配置刷新功能。
-
-而拥有了 `Spring Cloud Bus` 之后，我们只需要创建一个简单的请求，并且加上 `@ResfreshScope` 注解就能进行配置的动态修改了，下面我画了张图供你理解。
-
-<img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-11/springcloud-bus-s213dsfsd.jpg" style="zoom:50%;" />
-
-## 总结
-
-这篇文章中我带大家初步了解了 `Spring Cloud` 的各个组件，他们有
-
-- `Eureka` 服务发现框架
-- `Ribbon` 进程内负载均衡器
-- `Open Feign` 服务调用映射
-- `Hystrix` 服务降级熔断器
-- `Zuul` 微服务网关
-- `Config` 微服务统一配置中心
-- `Bus` 消息总线
-
-如果你能这个时候能看懂文首那张图，也就说明了你已经对 `Spring Cloud` 微服务有了一定的架构认识。
+zookeeper算是渣男类型，他没有Eureka那样温情脉脉，还会等你。zookeeper相对无情一点，你关掉服务，他就会把你清理掉。
 
 
 
-## 项目
+### 服务消费者
 
-![1589015707302](SpringCloud.assets/1589015707302.png)
+启动orderZK80  可以看到zookeeper上面有  新启动的服务消费者
+
+![1591151710444](../media/pictures/SpringCloud.assets/1591151710444.png)
+
+
+
+经过测试 可以调用服务消费者
+
+![1591151860745](../media/pictures/SpringCloud.assets/1591151860745.png)
+
+这里没有讲zookeeper部署集群，部署集群其实在后面加一个逗号，然后写另一个zookeeper就好。
+
+主要的是后面的技术。
+
+
+
+## Consul服务注册与发现 
+
+学到这里学一下 docker 看一下 部署是否方便许多 
+
+这里跳过啦，具体项目中如果用到的话，再学。
+
+https://www.bilibili.com/video/BV18E411x7eT?p=32 
+
+
+
+### 三个注册中心异同点：
+
+CAP
+		C：Consistency(强一致性)    数据必须一致，不一致就会报错
+		A：Availability（可用性）
+		P：Partition tolerance（分区容错性）  这个是一定要满足的一个
+		CAP理论关注粒度是数据，而不是整体系统设计
+经典CAP图
+		AP(Eureka)   好死不如赖活着。只要可以用，出一点错没关系。
+		CP(Zookeeper/Consul)   测试发现Zookeeper，心跳如果找不到，马上剔除。
+
+
+
+老师举例子说的，一般系统先要保证可用，也就是先保证A，然后再用其他技术，什么柔性事务什么的，恢复数据不一致的问题。
+
+
+
+![1591689508621](../media/pictures/SpringCloud.assets/1591689508621.png)
+
+
+
+![1591689589925](../media/pictures/SpringCloud.assets/1591689589925.png)
+
+
+
+## Ribbon负载均衡服务调用
+
+### 概述
+
+这个负载均衡是进程内负载均衡。Nginx是服务器端负载均衡。
+
+
+
+意思是什么呢？
+
+就是说，比如你要进医院，医院为了避免人多，弄了10个分院，Nginx就干这个事情，他先把人按照一定比例分到十个医院，负载均衡。
+
+而进去医院以后，每个医院人还是很多，还需要根据科室进行负载均衡（比如口腔科十个医生，怎么分开），每个科室怎么分，这就是Ribbon干的事情。
+
+
+
+#### 一句话就是
+
+负载均衡+RestTemplate调用
+
+
+
+### Ribbon负载均衡演示
+
+使用的时候 不用引入依赖。因为Eureka里面集成了ribbon。
+
+
+
+打开order80，看导入的依赖，发现Eureka原来的里面已经继承了ribbon
+
+![1591944008562](../media/pictures/SpringCloud.assets/1591944008562.png)
+
+
+
+在order80的controller中加了接口，调用就是这个样子的：
+
+![1591945814431](../media/pictures/SpringCloud.assets/1591945814431.png)
+
+
+
+### Ribbon核心组件IRuleige
+
+####  IRule 有七个
+
+系统默认的是轮询的 
+
+
+
+根据特定算法中从服务列表中选择一个要访问的服务
+	com.netflix.loadbalancer.RoundRobinRule
+		轮询
+	com.netflix.loadbalancer.RandomRule
+		随机
+	com.netflix.loadbalancer.RetryRule
+		先按照RoundRobinRule的策略获取服务，如果获取服务失败则再指定时间内重试，获取可用服务
+	WeightResponseTimeRule
+		对RoundRobinRule的扩展，响应速度越快的实例选择权重越大
+	BestAvailableRule
+		会先过滤掉由于多次访问故障而处于断路器跳闸状态的服务，然后选择一个并发量最小的服务
+	AvailabilityFilterRule
+		先过滤掉故障实例，再选择并发较小的实例
+	ZoneAvoidanceRule
+		默认规则，复合判断server所在区域的性能和server的可用性选择服务器
+
+
+
+#### 替换
+
+在替换的时候，有一个需要注意的：
+
+就是不能放在@ComponentScan注解可以扫描的地方
+
+
+
+也就是需要在外边新建立一个包，就是这个样子的。
+
+![1591948389606](../media/pictures/SpringCloud.assets/1591948389606.png)
+
+
+
+```java
+package com.cskaoyan.myruler;
+
+import com.netflix.loadbalancer.IRule;
+import com.netflix.loadbalancer.RandomRule;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+/**
+ * @author Steve
+ * @date 2020/6/12-15:59
+ */
+@Configuration
+public class MySelfRule {
+	
+	@Bean
+	public IRule myRule(){ 
+		return new RandomRule(); //定义为随机 
+	}
+}
+```
+
+将轮询改成随机，同时在主启动类上面加注解：
+
+```java
+@RibbonClient(name = "CLOUD-PAYMENT-SERVICE", configuration = MySelfRule.class)
+```
+
+
+
+```java
+package com.cskaoyan.springcloud;
+
+import com.cskaoyan.myruler.MySelfRule;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.cloud.netflix.ribbon.RibbonClient;
+
+@EnableEurekaClient
+@SpringBootApplication
+@RibbonClient(name = "CLOUD-PAYMENT-SERVICE", configuration = MySelfRule.class)
+public class OrderMain80 {
+	public static void main(String[] args) {
+		SpringApplication.run(OrderMain80.class, args);
+	}
+}
+```
+
+
+
+这样的话 测试 结果就是随机的：
+
+![1591955254185](../media/pictures/SpringCloud.assets/1591955254185.png)
+
+
+
+### Ribbon负载均衡算法
+
+#### 原理
+
+![1591955937766](../media/pictures/SpringCloud.assets/1591955937766.png)
+
+
+
+负载均衡算法：rest接口第几次请求数 % 服务器集群总数量 = 实际调用服务器位置下标，每次服务重启后rest接口技术从1开始。
+
+```java
+//假如现在有两台进行负载均衡 具体请求那一台？ 通过下面算出来的 
+
+1 % 2 = 1  ---->  index = 1  list.get(incdex);
+2 % 2 = 1  ---->  index = 0  list.get(incdex);
+3 % 2 = 1  ---->  index = 1  list.get(incdex);
+```
+
+
+
+#### 源码
+
+![1592186565880](../media/pictures/SpringCloud.assets/1592186565880.png)
+
+这个类里面有基本的是基本的轮询
+
+```java
+/*
+ *
+ * Copyright 2013 Netflix, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+package com.netflix.loadbalancer;
+
+import com.netflix.client.config.IClientConfig;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
+
+/**
+ * The most well known and basic load balancing strategy, i.e. Round Robin Rule.
+ *
+ * @author stonse
+ * @author Nikos Michalakis <nikos@netflix.com>
+ *
+ */
+public class RoundRobinRule extends AbstractLoadBalancerRule {
+
+    private AtomicInteger nextServerCyclicCounter;
+    private static final boolean AVAILABLE_ONLY_SERVERS = true;
+    private static final boolean ALL_SERVERS = false;
+
+    private static Logger log = LoggerFactory.getLogger(RoundRobinRule.class);
+
+    public RoundRobinRule() {
+        nextServerCyclicCounter = new AtomicInteger(0);
+    }
+
+    public RoundRobinRule(ILoadBalancer lb) {
+        this();
+        setLoadBalancer(lb);
+    }
+
+    public Server choose(ILoadBalancer lb, Object key) {
+        if (lb == null) {
+            log.warn("no load balancer");
+            return null;
+        }
+
+        Server server = null;
+        int count = 0;
+        while (server == null && count++ < 10) {
+            List<Server> reachableServers = lb.getReachableServers();
+            List<Server> allServers = lb.getAllServers();
+            int upCount = reachableServers.size();
+            int serverCount = allServers.size();
+
+            if ((upCount == 0) || (serverCount == 0)) {
+                log.warn("No up servers available from load balancer: " + lb);
+                return null;
+            }
+
+            int nextServerIndex = incrementAndGetModulo(serverCount);
+            server = allServers.get(nextServerIndex);
+
+            if (server == null) {
+                /* Transient. */
+                Thread.yield();
+                continue;
+            }
+
+            if (server.isAlive() && (server.isReadyToServe())) {
+                return (server);
+            }
+
+            // Next.
+            server = null;
+        }
+
+        if (count >= 10) {
+            log.warn("No available alive servers after 10 tries from load balancer: "
+                    + lb);
+        }
+        return server;
+    }
+
+    /**
+     * Inspired by the implementation of {@link AtomicInteger#incrementAndGet()}.
+     *
+     * @param modulo The modulo to bound the value of the counter.
+     * @return The next value.
+     */
+    private int incrementAndGetModulo(int modulo) {
+        for (;;) {
+            int current = nextServerCyclicCounter.get();
+            int next = (current + 1) % modulo;
+            if (nextServerCyclicCounter.compareAndSet(current, next))
+                return next;
+        }
+    }
+
+    @Override
+    public Server choose(Object key) {
+        return choose(getLoadBalancer(), key);
+    }
+
+    @Override
+    public void initWithNiwsConfig(IClientConfig clientConfig) {
+    }
+}
+
+```
+
+
+
+源码里面：
+
+```java
+if ((upCount == 0) || (serverCount == 0)) {
+    log.warn("No up servers available from load balancer: " + lb);
+    return null;
+}
+```
+
+upCound 这里指的就是 Eureka 网页上面的，只有这里将服务注册进容器里面，才会有后续的2操作。
+
+![1592187031257](../media/pictures/SpringCloud.assets/1592187031257.png)
+
+
+
+```java
+/**
+     * Inspired by the implementation of {@link AtomicInteger#incrementAndGet()}.
+     *
+     * @param modulo The modulo to bound the value of the counter.
+     * @return The next value.
+     */
+private int incrementAndGetModulo(int modulo) {
+    for (;;) {
+        int current = nextServerCyclicCounter.get();
+        int next = (current + 1) % modulo;
+        if (nextServerCyclicCounter.compareAndSet(current, next)) //比较并交换，自旋锁 CAS
+            return next;
+    }
+}
+```
+
+
+
+#### 手写一个负载算法
+
+原理 + JUC （CAS + 自旋锁的复习）
+
+
+
+首先去掉原来的order80  config里面的@LoadBalance的  这个注解，避免这个注解影响自己写的负载，
+
+
+
+**在MyLB 类上面加一个注解   @component**                                                                        
+
+1、@controller 控制器（注入服务）
+
+2、@service 服务（注入dao）
+
+3、@repository dao（实现dao访问）
+
+4、@component （把普通pojo实例化到spring容器中，相当于配置文件中的<bean id="" class=""/>）
+
+参考： https://www.cnblogs.com/lyjing/p/8427832.html
+
+
+
+## OpenFeign服务接口调用
+
+### 概况
+
+#### 是什么
+
+Feign是一个声明式的Web服务客户端，让编写Web服务客户端变得非常容易，**只需创建一个接口并在接口上申明注解**。
+
+
+
+
+
+![1592874931363](../media/pictures/SpringCloud.assets/1592874931363.png)
+
+
+
+
+
+### OpenFeign使用步骤
+
+#### 接口+注解
+
+微服务调用接口+@FeignClient
+
+
+
+#### 步骤
+
+pom->yml->主启动->业务类->测试
+
+
+
+#### 小总结
+
+![1592880224156](../media/pictures/SpringCloud.assets/1592880224156.png)
+
+
+
+### OpenFeign超时控制
+
+OpenFeign默认超时控制是1秒钟，如果在这之内请求不到就会报请求超时。
+
+![1592882064655](../media/pictures/SpringCloud.assets/1592882064655.png)
+
+
+
+为了使OpenFeign默认时间长一点，需要在application.yml  中添加配置
+
+```yml
+#设置feign客户端超时时间（OpenFeign默认支持ribbon）
+ribbon:
+  #指的是建立连接所用的时间，适用于网络状况正常的情况下，两端连接所用的实际
+  ReadTimeout: 5000
+  #指的是建立连接后从服务器读取到可用资源所用的时间
+  ConnectTimeout: 5000
+```
+
+这样的话就可以访问的到啦
+
+![1592882457545](../media/pictures/SpringCloud.assets/1592882457545.png)
+
+### OpenFeign日志打印功能
+
+#### 日志级别
+
+![1592882971685](../media/pictures/SpringCloud.assets/1592882971685.png)
+
+
+
+注意这里一定是类对应的包，不用自己写，复制
+
+```yml
+logging:
+  level:
+    #feign日志以什么级别监控那个接口   以dubug的形式打印full全日志
+    com.cskaoyan.springcloud.service.PaymentFeignService: debug
+```
+
+
+
+## Hystrix断路器（服务降级）
+
+发音：海思拽克斯
+
+阳哥学习三板斧：理论 + 实操 + 小总结
+
+### 概述
+
+#### 分布式系统所面临的问题
+
+服务雪崩
+
+![1592891587067](../media/pictures/SpringCloud.assets/1592891587067.png)
+
+
+
+#### 是什么
+
+基本介绍
+
+![1592891693564](../media/pictures/SpringCloud.assets/1592891693564.png)
+
+
+
+### Hystrix重要概念
+
+![1592989813112](../media/pictures/SpringCloud.assets/1592989813112.png)
+
+
+
+#### 服务降级 fallback
+
+@PathVariable是spring3.0的一个新功能：接收请求路径中占位符的值，代码中用到这个注解
+
+
+
+##### 服务降级指的是
+
+服务器忙，请稍后重试，不让客户等待，并返回一个友好界面
+
+
+
+##### 通常会出现降级的几种情况
+
+- 程序运行异常
+- 超时
+- 服务熔断触发服务降级
+- 线程池/信号已满
+
+
+
+#### 服务熔断 break
+
+类似于保险丝，当达到最大访问后，直接拒绝访问，拉闸限电，返回友好提示
+
+
+
+#### 服务限流 flowlimit
+
+秒杀高并发操作，严禁一窝蜂过来拥挤，等待排队，一秒N个，有序进行。
+
+
+
+### Hystrix案例
+
+#### 构建 cloud-provider-hystrix-payment8001
+
+pom--yml--主启动--业务类--正常测试
+
+
+
+##### 注意
+
+还有一个，Hystrix里面的原理好像是利用tomcat的多线程，如果请求很多事是会消耗完tomcat里面的线程的。
+
+
+
+#### 高并发测试
+
+用 Jmeter直接弄20000个请求打payment8001，看两个方法怎么样。
+
+测试结果是，请求确实慢了很多。
+
+
+
+这里还有涉及到Jmeter的下载，安装，使用等。在笔记微服务秒杀里面。 
+
+#### 故障现象和导致原因
+
+8001同一个层次的其他服务被困死，因为tomcat线程池里面的工作线程已经被挤占完毕。
+
+80此时调用8001，客户端访问缓慢，转圈圈。
+
+
+
+#### 上诉结论
+
+正因为有上诉故障或不佳表现，才有我们的降级/容错/限流等技术诞生
+
+
+
+#### 如何解决？解决要求
+
+![1593306118196](../media/pictures/SpringCloud.assets/1593306118196.png)
+
+
+
+#### 服务降级
+
+
+
+#### 服务熔断
+
+
+
+#### 服务限流
+
+
+
+### Hystrix工作流程
+
+
+
+### 服务监控Hystrix Dashboard
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 # 纯洁的微笑
-
-
 
 ## Spring Cloud 学习资料汇总
 
@@ -1352,19 +1521,19 @@ Eureka是Netflix开源的一款提供服务注册和发现的产品，它提供�
 
 正常调用项目A请求项目B
 
-![img](SpringCloud.assets/ab.jpg)
+![img](../media/pictures/SpringCloud.assets/ab.jpg)
 
 有了服务中心之后，任何一个服务都不能直接去掉用，都需要通过服务中心来调用
 
-![img](SpringCloud.assets/a2b.jpg)
+![img](../media/pictures/SpringCloud.assets/a2b.jpg)
 
 项目A调用项目B，项目B在调用项目C
 
-![img](SpringCloud.assets/abc.jpg)
+![img](../media/pictures/SpringCloud.assets/abc.jpg)
 
 这时候调用的步骤就会为两步：第一步，项目A首先从服务中心请求项目B服务器，然后项目B在从服务中心请求项目C服务。
 
-![img](SpringCloud.assets/a2b2c.jpg)
+![img](../media/pictures/SpringCloud.assets/a2b2c.jpg)
 
 上面的项目只是两三个相互之间的简单调用，但是如果项目超过20个30个呢，在15年底的时候我司分布式的项目就达到了二十几个，画一张图来描述几十个项目之间的相互调用关系全是线条，任何其中的一个项目改动，就会牵连好几个项目跟着重启，巨麻烦而且容易出错。通过服务中心来获取服务你不需要关注你调用的项目IP地址，由几台服务器组成，每次直接去服务中心获取可以使用的服务去调用既可。
 
@@ -1396,7 +1565,7 @@ Eureka由两个组件组成：Eureka服务器和Eureka客户端。Eureka服务�
 
 用一张图来认识以下：
 
-![img](SpringCloud.assets/eureka-architecture-overview.png)
+![img](../media/pictures/SpringCloud.assets/eureka-architecture-overview.png)
 
 上图简要描述了Eureka的基本架构，由3个角色组成：
 
@@ -1473,7 +1642,7 @@ eureka.client.serviceUrl.defaultZone=http://localhost:${server.port}/eureka/
 
 启动工程后，访问：http://localhost:8000/，可以看到下面的页面，其中还没有发现任何服务
 
-![img](SpringCloud.assets/eureka_start.jpg)
+![img](../media/pictures/SpringCloud.assets/eureka_start.jpg)
 
 ### 集群
 
@@ -1526,7 +1695,7 @@ java -jar spring-cloud-eureka-0.0.1-SNAPSHOT.jar --spring.profiles.active=peer2
 
 依次启动完成后，浏览器输入：`http://localhost:8000/` 效果图如下：
 
-![img](SpringCloud.assets/eureka-two.jpg)
+![img](../media/pictures/SpringCloud.assets/eureka-two.jpg)
 
 根据图可以看出peer1的注册中心DS Replicas已经有了peer2的相关配置信息，并且出现在available-replicas中。我们手动停止peer2来观察，发现peer2就会移动到unavailable-replicas一栏中，表示peer2不可用。
 
@@ -1590,7 +1759,7 @@ java -jar spring-cloud-eureka-0.0.1-SNAPSHOT.jar --spring.profiles.active=peer3
 
 依次启动完成后，浏览器输入：`http://localhost:8000/` 效果图如下：
 
-![img](SpringCloud.assets/eureka-cluster.jpg)
+![img](../media/pictures/SpringCloud.assets/eureka-cluster.jpg)
 
 可以在peer1中看到了peer2、peer3的相关信息。至此eureka集群也已经完成了
 
@@ -1668,7 +1837,7 @@ public class HelloController {
 
 添加`@EnableDiscoveryClient`注解后，项目就具有了服务注册的功能。启动工程后，就可以在注册中心的页面看到SPRING-CLOUD-PRODUCER服务。
 
-![img](SpringCloud.assets/eureka_server.png)
+![img](../media/pictures/SpringCloud.assets/eureka_server.png)
 
 到此服务提供者配置就完成了。
 
@@ -1802,7 +1971,7 @@ eureka.client.serviceUrl.defaultZone=http://localhost:8000/eureka/
 
 打包启动后，在eureka就会发现两个服务提供者，如下图：
 
-![img](SpringCloud.assets/eureka_server2.png)
+![img](../media/pictures/SpringCloud.assets/eureka_server2.png)
 
 然后在浏览器再次输入：`http://localhost:9001/hello/neo` 进行测试：
 
@@ -1826,7 +1995,7 @@ eureka.client.serviceUrl.defaultZone=http://localhost:8000/eureka/
 
 如果下图所示：A作为服务提供者，B为A的服务消费者，C和D是B的服务消费者。A不可用引起了B的不可用，并将不可用像滚雪球一样放大到C和D时，雪崩效应就形成了。
 
-![img](SpringCloud.assets/hystrix-1.png)
+![img](../media/pictures/SpringCloud.assets/hystrix-1.png)
 
 #### 熔断器（CircuitBreaker）
 
@@ -1834,7 +2003,7 @@ eureka.client.serviceUrl.defaultZone=http://localhost:8000/eureka/
 
 熔断器模式就像是那些容易导致错误的操作的一种代理。这种代理能够记录最近调用发生错误的次数，然后决定使用允许操作继续，或者立即返回错误。 熔断器开关相互转换的逻辑如下图：
 
-![img](SpringCloud.assets/hystrix-2.png)
+![img](../media/pictures/SpringCloud.assets/hystrix-2.png)
 
 熔断器就是保护服务高可用的最后一道防线。
 
@@ -1844,26 +2013,19 @@ eureka.client.serviceUrl.defaultZone=http://localhost:8000/eureka/
 
 断路器很好理解, 当Hystrix Command请求后端服务失败数量超过一定比例(默认50%), 断路器会切换到开路状态(Open). 这时所有请求会直接失败而不会发送到后端服务. 断路器保持在开路状态一段时间后(默认5秒), 自动切换到半开路状态(HALF-OPEN). 这时会判断下一次请求的返回情况, 如果请求成功, 断路器切回闭路状态(CLOSED), 否则重新切换到开路状态(OPEN). Hystrix的断路器就像我们家庭电路中的保险丝, 一旦后端服务不可用, 断路器会直接切断请求链, 避免发送大量无效请求影响系统吞吐量, 并且断路器有自我检测并恢复的能力.
 
-<<<<<<< HEAD
-cmder/cmd 里面  live-server —port=8084
-=======
+
+
 **2.Fallback**
 
 Fallback相当于是降级操作. 对于查询操作, 我们可以实现一个fallback方法, 当请求后端服务出现异常的时候, 可以使用fallback方法返回的值. fallback方法的返回值一般是设置的默认值或者来自缓存.
 
 **3.资源隔离**
->>>>>>> 38058ae9e0fc06ab8a657e44291ee836e81bc4e3
 
 在Hystrix中, 主要通过线程池来实现资源隔离. 通常在使用的时候我们会根据调用的远程服务划分出多个线程池. 例如调用产品服务的Command放入A线程池, 调用账户服务的Command放入B线程池. 这样做的主要优点是运行环境被隔离开了. 这样就算调用服务的代码存在bug或者由于其他原因导致自己所在线程池被耗尽时, 不会对系统的其他服务造成影响. 但是带来的代价就是维护多个线程池会对系统带来额外的性能开销. 如果是对性能有严格要求而且确信自己调用服务的客户端代码不会出问题的话, 可以使用Hystrix的信号模式(Semaphores)来隔离资源.
 
-<<<<<<< HEAD
-  登录密码：cxgws001   wl111111
 
 
-=======
 ### Feign Hystrix
->>>>>>> 38058ae9e0fc06ab8a657e44291ee836e81bc4e3
-
 因为熔断只是作用在服务调用这一端，因此我们根据上一篇的示例代码只需要改动spring-cloud-consumer项目相关代码就可以。因为，Feign中已经依赖了Hystrix所以在maven配置上不用做任何改动。
 
 #### 1、配置文件
@@ -1972,7 +2134,7 @@ public class ConsumerApplication {
 
 启动工程后访问 http://localhost:9001/hystrix，将会看到如下界面：
 
-![img](SpringCloud.assets/hystrix-dashboard-1.jpg)
+![img](../media/pictures/SpringCloud.assets/hystrix-dashboard-1.jpg)
 
 图中会有一些提示：
 
@@ -1998,11 +2160,11 @@ data: {"type":...}
 
 到监控页面就会显示如下图：
 
-![img](SpringCloud.assets/hystrix-dashboard-2.jpg)
+![img](../media/pictures/SpringCloud.assets/hystrix-dashboard-2.jpg)
 
 其实就是http://localhost:9001/hystrix.stream返回结果的图形化显示，Hystrix Dashboard Wiki上详细说明了图上每个指标的含义，如下图：
 
-![img](SpringCloud.assets/hystrix-dashboard-3.png)
+![img](../media/pictures/SpringCloud.assets/hystrix-dashboard-3.png)
 
 到此单个应用的熔断监控已经完成。
 
@@ -2110,7 +2272,7 @@ public interface HelloRemote {
 
 打开eureka后台可以看到注册了三个服务：
 
-![img](SpringCloud.assets/turbine-01.jpg)
+![img](../media/pictures/SpringCloud.assets/turbine-01.jpg)
 
 访问 http://localhost:8001/turbine.stream
 
@@ -2123,7 +2285,7 @@ data: {"reportingHostsLast10Seconds":1,"name":"meta","type":"meta","timestamp":1
 
 并且会不断刷新以获取实时的监控数据，说明和单个的监控类似，返回监控项目的信息。进行图形化监控查看，输入：http://localhost:8001/hystrix，返回酷酷的小熊界面，输入： http://localhost:8001/turbine.stream，然后点击 Monitor Stream ,可以看到出现了俩个监控列表
 
-![img](SpringCloud.assets/turbine-02.jpg)
+![img](../media/pictures/SpringCloud.assets/turbine-02.jpg)
 
 ## SpringCloud(六)：配置中心git示例
 
@@ -2473,7 +2635,7 @@ WebHook是当某个事件发生时，通过发送http post请求的方式来通�
 
 如此一来，你就可以通过这种方式去自动完成一些重复性工作，比如，你可以用Webhook来自动触发一些持续集成（CI）工具的运作，比如Travis CI；又或者是通过 Webhook 去部署你的线上服务器。下图就是github上面的webhook配置。
 
-![img](SpringCloud.assets/webhook.jpg)
+![img](../media/pictures/SpringCloud.assets/webhook.jpg)
 
 - `Payload URL` ：触发后回调的URL
 - `Content type` ：数据格式，两种一般使用json
@@ -2558,7 +2720,7 @@ public class ConfigServerApplication {
 
 这样server端的改造就完成了。先启动eureka注册中心，在启动server端，在浏览器中访问：`http://localhost:8000/` 就会看到server端已经注册了到注册中心了。
 
-![img](SpringCloud.assets/eureka-config01.jpg)
+![img](../media/pictures/SpringCloud.assets/eureka-config01.jpg)
 
 按照上篇的测试步骤对server端进行测试服务正常。
 
@@ -2630,13 +2792,13 @@ public class ConfigClientApplication {
 
 启动client端，在浏览器中访问：`http://localhost:8000/` 就会看到server端和client端都已经注册了到注册中心了。
 
-![img](SpringCloud.assets/eureka-config02.jpg)
+![img](../media/pictures/SpringCloud.assets/eureka-config02.jpg)
 
 ### 高可用
 
 为了模拟生产集群环境，我们改动server端的端口为8003，再启动一个server端来做服务的负载，提供高可用的server端支持。
 
-![img](SpringCloud.assets/eureka-config03.jpg)
+![img](../media/pictures/SpringCloud.assets/eureka-config03.jpg)
 
 如上图就可发现会有两个server端同时提供配置中心的服务，防止某一台down掉之后影响整个系统的使用。
 
@@ -2676,7 +2838,7 @@ Spring cloud bus通过轻量消息代理连接各个分布的节点。这会用�
 
 Spring cloud bus被国内很多都翻译为消息总线，也挺形象的。大家可以将它理解为管理和传播所有分布式项目中的消息既可，其实本质是利用了MQ的广播机制在分布式的系统中传播消息，目前常用的有Kafka和RabbitMQ。利用bus的机制可以做很多的事情，其中配置中心客户端刷新就是典型的应用场景之一，我们用一张图来描述bus在配置中心使用的机制。
 
-![img](SpringCloud.assets/configbus1.jpg)
+![img](../media/pictures/SpringCloud.assets/configbus1.jpg)
 
 根据此图我们可以看出利用Spring Cloud Bus做配置更新的步骤:
 
@@ -2729,7 +2891,7 @@ spring.rabbitmq.password=123456
 
 说明客户端已经具备了消息总线通知的能力了，为了更好的模拟消息总线的效果，我们更改客户端spring-cloud-config-client项目的端口为8003、8004依次启动，这样测试环境就准备好了。启动后eureka后台效果图如下：
 
-![img](SpringCloud.assets/configbus3.jpg)
+![img](../media/pictures/SpringCloud.assets/configbus3.jpg)
 
 我们先分别测试一下服务端和客户端是否正确运行，访问：`http://localhost:8001/neo-config/dev`，返回信息：
 
@@ -2775,7 +2937,7 @@ curl -X POST http://localhost:8002/bus/refresh
 
 因此我们将上面的架构模式稍微改变一下
 
-![img](SpringCloud.assets/configbus2.jpg)
+![img](../media/pictures/SpringCloud.assets/configbus2.jpg)
 
 这时Spring Cloud Bus做配置更新步骤如下:
 
@@ -2946,7 +3108,7 @@ BUG的讨论和解决过程可以看github上面这两个issue:
 
 在微服务架构模式下后端服务的实例数一般是动态的，对于客户端而言很难发现动态改变的服务实例的访问地址信息。因此在基于微服务的项目中为了简化前端的调用逻辑，通常会引入API Gateway作为轻量级网关，同时API Gateway中也会实现相关的认证逻辑从而简化内部服务之间相互调用的复杂度。
 
-![img](SpringCloud.assets/api_gateway.png)
+![img](../media/pictures/SpringCloud.assets/api_gateway.png)
 
 2、数据裁剪以及聚合
 
@@ -2958,13 +3120,13 @@ BUG的讨论和解决过程可以看github上面这两个issue:
 
 当然我们还可以针对不同的渠道和客户端提供不同的API Gateway,对于该模式的使用由另外一个大家熟知的方式叫Backend for front-end, 在Backend for front-end模式当中，我们可以针对不同的客户端分别创建其BFF，进一步了解BFF可以参考这篇文章：[Pattern: Backends For Frontends](http://samnewman.io/patterns/architectural/bff/)
 
-![img](SpringCloud.assets/bff.png)
+![img](../media/pictures/SpringCloud.assets/bff.png)
 
 4、遗留系统的微服务化改造
 
 对于系统而言进行微服务改造通常是由于原有的系统存在或多或少的问题，比如技术债务，代码质量，可维护性，可扩展性等等。API Gateway的模式同样适用于这一类遗留系统的改造，通过微服务化的改造逐步实现对原有系统中的问题的修复，从而提升对于原有业务响应力的提升。通过引入抽象层，逐步使用新的实现替换旧的实现。
 
-![img](SpringCloud.assets/bff-process.png)
+![img](../media/pictures/SpringCloud.assets/bff-process.png)
 
 > 在Spring Cloud体系中， Spring Cloud Zuul就是提供负载均衡、反向代理、权限认证的一个API gateway。
 
@@ -3019,7 +3181,7 @@ public class GatewayServiceZuulApplication {
 
 启动`gateway-service-zuul-simple`项目，在浏览器中访问：`http://localhost:8888/it/spring-cloud`，看到页面返回了：`http://www.ityouknow.com/spring-cloud` 页面的信息，如下：
 
-![img](SpringCloud.assets/zuul-01.jpg)
+![img](../media/pictures/SpringCloud.assets/zuul-01.jpg)
 
 我们以前面文章的示例代码`spring-cloud-producer`为例来测试请求的重定向，在配置文件中添加：
 
@@ -3121,7 +3283,7 @@ hello 小明，this is two messge
 
 **想在公司推广Spring Cloud，但我对这项技术还缺乏了解,画了一张脑图，总结了种种问题。**
 
-![img](SpringCloud.assets/springcloud-question.png)
+![img](../media/pictures/SpringCloud.assets/springcloud-question.png)
 
 **微服务是这样一个结构吗?**
 
@@ -3210,7 +3372,7 @@ Turbine、zipkin可以用来做熔断和性能监控；动态上下线某个节�
 
 我们从整体来看一下Spring Cloud主要的组件，以及它的访问流程
 
-![img](SpringCloud.assets/spring-cloud-architecture.png)
+![img](../media/pictures/SpringCloud.assets/spring-cloud-architecture.png)
 
 - 1、外部或者内部的非Spring Cloud项目都统一通过API网关（Zuul）来访问内部服务.
 - 2、网关接收到请求后，从注册中心（Eureka）获取可用服务
@@ -3248,7 +3410,7 @@ Spring Cloud作为一套微服务治理的框架，几乎考虑到了微服务�
 
 下面是单体架构的架构图：
 
-![img](SpringCloud.assets/single_structure.jpg)
+![img](../media/pictures/SpringCloud.assets/single_structure.jpg)
 
 在单体架构中，技术选型非常灵活，优先满足快速上线的要求，也便于快速跟进市场。
 
@@ -3260,7 +3422,7 @@ Spring Cloud作为一套微服务治理的框架，几乎考虑到了微服务�
 
 下面是垂直架构的架构图：
 
-![img](SpringCloud.assets/vertical__structure.jpg)
+![img](../media/pictures/SpringCloud.assets/vertical__structure.jpg)
 
 在这个阶段SSH（struts+spring+hibernate）是项目的关键技术，Struts负责web层逻辑控制、Spring负责业务层管理Bean、Hibernate负责数据库操作进行封装，持久化数据。
 
@@ -3274,7 +3436,7 @@ SOA服务化的优点是，它可以根据需求通过网络对松散耦合的�
 
 下面是服务化架构图：
 
-![img](SpringCloud.assets/soa__structure.jpg)
+![img](../media/pictures/SpringCloud.assets/soa__structure.jpg)
 
 在这个阶段可以使用WebService或者dubbo来服务治理。
 
@@ -3323,7 +3485,7 @@ SOA服务化的优点是，它可以根据需求通过网络对松散耦合的�
 
 Spring Cloud解决的第一个问题就是：服务与服务之间的解耦。很多公司在业务高速发展的时候，服务组件也会相应的不断增加。服务和服务之间有着复杂的相互调用关系，经常有服务A调用服务B，服务B调用服务C和服务D …，随着服务化组件的不断增多，服务之间的调用关系成指数级别的增长，极端情况下就如下图所示：
 
-![img](SpringCloud.assets/calling_relation.png)
+![img](../media/pictures/SpringCloud.assets/calling_relation.png)
 
 这样最容易导致的情况就是牵一发而动全身。经常出现由于某个服务更新而没有通知到其它服务，导致上线后惨案频发。这时候就应该进行服务治理，将服务之间的直接依赖转化为服务对服务中心的依赖。Spring Cloud 核心组件Eureka就是解决这类问题。
 
@@ -3333,7 +3495,7 @@ Eureka是Netflix开源的一款提供服务注册和发现的产品，它提供�
 
 用大白话讲，Eureka就是一个服务中心，将所有的可以提供的服务都注册到它这里来管理，其它各调用者需要的时候去注册中心获取，然后再进行调用，避免了服务之间的直接调用，方便后续的水平扩展、故障转移等。如下图：
 
-![img](SpringCloud.assets/eureka.jpg)
+![img](../media/pictures/SpringCloud.assets/eureka.jpg)
 
 当然服务中心这么重要的组件一但挂掉将会影响全部服务，因此需要搭建Eureka集群来保持高可用性，生产中建议最少两台。随着系统的流量不断增加，需要根据情况来扩展某个服务，Eureka内部已经提供均衡负载的功能，只需要增加相应的服务端实例既可。那么在系统的运行期间某个实例挂了怎么办？Eureka内容有一个心跳检测机制，如果某个实例在规定的时间内没有进行通讯则会自动被剔除掉，避免了某个实例挂掉而影响服务。
 
@@ -3345,7 +3507,7 @@ Eureka是Netflix开源的一款提供服务注册和发现的产品，它提供�
 
 如下图所示：A作为服务提供者，B为A的服务消费者，C和D是B的服务消费者。A不可用引起了B的不可用，并将不可用像滚雪球一样放大到C和D时，雪崩效应就形成了。
 
-![img](SpringCloud.assets/hystrix-1-1589793999051.png)
+![img](../media/pictures/SpringCloud.assets/hystrix-1-1589793999051.png)
 
 在这种情况下就需要整个服务机构具有故障隔离的功能，避免某一个服务挂掉影响全局。在Spring Cloud 中Hystrix组件就扮演这个角色。
 
@@ -3359,7 +3521,7 @@ Hystrix会在某个服务连续调用N次不响应的情况下，立即通知调
 
 Hystrix-dashboard是一款针对Hystrix进行实时监控的工具，通过Hystrix Dashboard我们可以直观地看到各Hystrix Command的请求响应时间, 请求成功率等数据。但是只使用Hystrix Dashboard的话, 你只能看到单个应用内的服务信息, 这明显不够. 我们需要一个工具能让我们汇总系统内多个服务的数据并显示到Hystrix Dashboard上, 这个工具就是Turbine. 监控的效果图如下：
 
-![img](SpringCloud.assets/turbine-02-1589793999206.jpg)
+![img](../media/pictures/SpringCloud.assets/turbine-02-1589793999206.jpg)
 
 想了解具体都监控了哪些指标，以及如何监控可以参考这篇文章：[熔断监控Hystrix Dashboard和Turbine](http://www.ityouknow.com/springcloud/2017/05/18/hystrix-dashboard-turbine.html)
 
@@ -3385,7 +3547,7 @@ Spring Cloud Bus通过轻量消息代理连接各个分布的节点。这会用�
 
 Spring Cloud Bus是轻量级的通讯组件，也可以用在其它类似的场景中。有了Spring Cloud Bus之后，当我们改变配置文件提交到版本库中时，会自动的触发对应实例的Refresh，具体的工作流程如下：
 
-![img](SpringCloud.assets/configbus2-1589793999251.jpg)
+![img](../media/pictures/SpringCloud.assets/configbus2-1589793999251.jpg)
 
 也可以参考这篇文章来了解：[配置中心和消息总线](http://www.ityouknow.com/springcloud/2017/05/26/springcloud-config-eureka-bus.html)
 
@@ -3393,7 +3555,7 @@ Spring Cloud Bus是轻量级的通讯组件，也可以用在其它类似的场�
 
 在微服务架构模式下，后端服务的实例数一般是动态的，对于客户端而言很难发现动态改变的服务实例的访问地址信息。因此在基于微服务的项目中为了简化前端的调用逻辑，通常会引入API Gateway作为轻量级网关，同时API Gateway中也会实现相关的认证逻辑从而简化内部服务之间相互调用的复杂度。
 
-![img](SpringCloud.assets/api_gateway-1589793999473.png)
+![img](../media/pictures/SpringCloud.assets/api_gateway-1589793999473.png)
 
 Spring Cloud体系中支持API Gateway落地的技术就是Zuul。Spring Cloud Zuul路由是微服务架构中不可或缺的一部分，提供动态路由，监控，弹性，安全等的边缘服务。Zuul是Netflix出品的一个基于JVM路由和服务端的负载均衡器。
 
@@ -3405,7 +3567,7 @@ Spring Cloud体系中支持API Gateway落地的技术就是Zuul。Spring Cloud Z
 
 随着服务的越来越多，对调用链的分析会越来越复杂，如服务之间的调用关系、某个请求对应的调用链、调用之间消费的时间等，对这些信息进行监控就成为一个问题。在实际的使用中我们需要监控服务和服务之间通讯的各项指标，这些数据将是我们改进系统架构的主要依据。因此分布式的链路跟踪就变的非常重要，Spring Cloud也给出了具体的解决方案：Spring Cloud Sleuth和Zipkin
 
-![img](SpringCloud.assets/dyl.png)
+![img](../media/pictures/SpringCloud.assets/dyl.png)
 
 Spring Cloud Sleuth为服务之间调用提供链路追踪。通过Sleuth可以很清楚的了解到一个服务请求经过了哪些服务，每个服务处理花费了多长时间。从而让我们可以很方便的理清各微服务间的调用关系。
 
@@ -3417,7 +3579,7 @@ Zipkin是Twitter的一个开源项目，允许开发者收集 Twitter 各个服�
 
 我们从整体上来看一下Spring Cloud各个组件如何来配套使用：
 
-![img](SpringCloud.assets/spring_cloud_structure.png)
+![img](../media/pictures/SpringCloud.assets/spring_cloud_structure.png)
 
 从上图可以看出Spring Cloud各个组件相互配合，合作支持了一套完整的微服务架构。
 
@@ -3455,7 +3617,7 @@ Dubbo 是阿里巴巴公司一个开源的高性能服务框架，致力于提�
 - 集群容错，提供基于接口方法的透明远程过程调用，包括多协议支持，以及软负载均衡，失败容错，地址路由，动态配置等集群支持。
 - 自动发现，基于注册中心目录服务，使服务消费方能动态的查找服务提供方，使地址透明，使服务提供方可以平滑增加或减少机器。
 
-![img](SpringCloud.assets/dubbo-architecture.png)
+![img](../media/pictures/SpringCloud.assets/dubbo-architecture.png)
 
 ### Dubbo发展史
 
@@ -3471,7 +3633,7 @@ Dubbo 开源之后，框架发展比较迅速，几乎两三个月会发布一�
 
 2014 年的 10 月 20 号，当当网 Fork 了阿里的一个 Dubbo 版本开始维护，并命名为 dubbox-2.8.0。值得注意的是，当当网扩展 Dubbo 服务框架支持 REST 风格远程调用，并且跟随着 ZooKeepe 和 Spring 升级了对应的版本。之后 Dubbox 一直在小版本维护，2015 年 3 月 31 号发布了最后一个版本 **dubbox-2.8.4**。
 
-![img](SpringCloud.assets/dubbox_rest.jpg)
+![img](../media/pictures/SpringCloud.assets/dubbox_rest.jpg)
 
 ### Dubbo团队这三个月都做了什么
 
@@ -3591,7 +3753,7 @@ Dubbo 开源之后，框架发展比较迅速，几乎两三个月会发布一�
 - Dubbo 有更强大的后台管理，Dubbo 提供的后台管理 Dubbo Admin 功能强大，提供了路由规则、动态配置、访问控制、权重调节、均衡负载等诸多强大的功能。
 - 可以限制某个 IP 流量的访问权限，设置不同服务器分发不同的流量权重，并且支持多种算法，利用这些功能我们可以在线上做灰度发布、故障转移等，Spring Cloud 到现在还不支持灰度发布、流量权重等功能。
 
-![img](SpringCloud.assets/dubbo_admin.png)
+![img](../media/pictures/SpringCloud.assets/dubbo_admin.png)
 
 **所以Dubbo专注于服务治理；Spring Cloud关注于微服务架构生态。**
 
@@ -3621,7 +3783,7 @@ Dubbo 开源之后，框架发展比较迅速，几乎两三个月会发布一�
 
 Filter是Zuul的核心，用来实现对外服务的控制。Filter的生命周期有4个，分别是“PRE”、“ROUTING”、“POST”、“ERROR”，整个生命周期可以用下图来表示。
 
-![img](SpringCloud.assets/zuul-core.png)
+![img](../media/pictures/SpringCloud.assets/zuul-core.png)
 
 Zuul大部分功能都是通过过滤器来实现的，这些过滤器类型对应于请求的典型生命周期。
 
@@ -3923,7 +4085,7 @@ public String index(@RequestParam String name) {
 
 ### Zuul高可用
 
-![img](SpringCloud.assets/zuul-case.png)
+![img](../media/pictures/SpringCloud.assets/zuul-case.png)
 
 我们实际使用Zuul的方式如上图，不同的客户端使用不同的负载将请求分发到后端的Zuul，Zuul在通过Eureka调用后端服务，最后对外输出。因此为了保证Zuul的高可用性，前端可以同时启动多个Zuul实例进行负载，在Zuul的前端使用Nginx或者F5进行负载转发以达到高可用性。
 
@@ -3939,7 +4101,7 @@ public String index(@RequestParam String name) {
 
 一般的，一个分布式服务跟踪系统，主要有三部分：数据收集、数据存储和数据展示。根据系统大小不同，每一部分的结构又有一定变化。譬如，对于大规模分布式系统，数据存储可分为实时数据和全量数据两部分，实时数据用于故障排查（troubleshooting），全量数据用于系统优化；数据收集除了支持平台无关和开发语言无关系统的数据收集，还包括异步数据收集（需要跟踪队列中的消息，保证调用的连贯性），以及确保更小的侵入性；数据展示又涉及到数据挖掘和分析。虽然每一部分都可能变得很复杂，但基本原理都类似。
 
-![img](SpringCloud.assets/tracing1.png)
+![img](../media/pictures/SpringCloud.assets/tracing1.png)
 
 服务追踪的追踪单元是从客户发起请求（request）抵达被追踪系统的边界开始，到被追踪系统向客户返回响应（response）为止的过程，称为一个“trace”。每个 trace 中会调用若干个服务，为了记录调用了哪些服务，以及每次调用的消耗时间等信息，在每次调用服务时，埋入一个调用记录，称为一个“span”。这样，若干个有序的 span 就组成了一个 trace。在系统向外界提供服务的过程中，会不断地有请求和响应发生，也就会不断生成 trace，把这些带有span 的 trace 记录下来，就可以描绘出一幅系统的服务拓扑图。附带上 span 中的响应时间，以及请求成功与否等信息，就可以在发生问题的时候，找到异常的服务；根据历史数据，还可以从系统整体层面分析出哪里性能差，定位性能优化的目标。
 
@@ -3953,7 +4115,7 @@ spring cloud sleuth可以结合zipkin，将信息发送到zipkin，利用zipkin�
 
 这是Spring Cloud Sleuth的概念图：
 
-![img](SpringCloud.assets/tracing2.png)
+![img](../media/pictures/SpringCloud.assets/tracing2.png)
 
 ### ZipKin
 
@@ -4019,7 +4181,7 @@ spring:
 
 配置完成后依次启动示例项目：`spring-cloud-eureka`、`zipkin-server`项目。刚问地址:`http://localhost:9000/zipkin/`可以看到Zipkin后台页面
 
-![img](SpringCloud.assets/tracing3.png)
+![img](../media/pictures/SpringCloud.assets/tracing3.png)
 
 #### 项目添加zipkin支持
 
@@ -4059,15 +4221,15 @@ Spring Cloud Sleuth有一个Sampler策略，可以通过这个实现类来控制
 
 点击查找看到有两条记录
 
-![img](SpringCloud.assets/zipkin1.png)
+![img](../media/pictures/SpringCloud.assets/zipkin1.png)
 
 点击记录进去页面，可以看到每一个服务所耗费的时间和顺序
 
-![img](SpringCloud.assets/zipkin2.png)
+![img](../media/pictures/SpringCloud.assets/zipkin2.png)
 
 点击依赖分析，可以看到项目之间的调用关系
 
-![img](SpringCloud.assets/zipkin3.png)
+![img](../media/pictures/SpringCloud.assets/zipkin3.png)
 
 ## SpringCloud(十三)：注册中心 Consul 使用详解
 
@@ -4115,11 +4277,11 @@ Consul 是 HashiCorp 公司推出的开源工具，用于实现分布式系统�
 
 Consul 客户端、服务端还支持夸中心的使用，更加提高了它的高可用性。
 
-![img](SpringCloud.assets/consul-server-client.png)
+![img](../media/pictures/SpringCloud.assets/consul-server-client.png)
 
 **Consul 工作原理：**
 
-![img](SpringCloud.assets/consol_service.png)
+![img](../media/pictures/SpringCloud.assets/consol_service.png)
 
 - 1、当 Producer 启动的时候，会向 Consul 发送一个 post 请求，告诉 Consul 自己的 IP 和 Port
 - 2、Consul 接收到 Producer 的注册后，每隔10s（默认）会向 Producer 发送一个健康检查的请求，检验Producer是否健康
@@ -4158,11 +4320,11 @@ Consul 不同于 Eureka 需要单独安装，访问[Consul 官网](https://www.c
 
 根据不同的系统类型选择不同的安装包，从下图也可以看出 Consul 支持所有主流系统。
 
-![img](SpringCloud.assets/consul_insall.png)
+![img](../media/pictures/SpringCloud.assets/consul_insall.png)
 
 我这里以 Windows 为例，下载下来是一个 consul_1.2.1_windows_amd64.zip 的压缩包，解压是是一个 consul.exe 的执行文件。
 
-![img](SpringCloud.assets/consul_win.png)
+![img](../media/pictures/SpringCloud.assets/consul_win.png)
 
 cd 到对应的目录下，使用 cmd 启动 Consul
 
@@ -4181,11 +4343,11 @@ pause
 
 启动结果如下：
 
-![img](SpringCloud.assets/consol_cmd.png)
+![img](../media/pictures/SpringCloud.assets/consol_cmd.png)
 
 启动成功之后访问：`http://localhost:8500`，可以看到 Consul 的管理界面
 
-![img](SpringCloud.assets/consol_manage.png)
+![img](../media/pictures/SpringCloud.assets/consol_manage.png)
 
 这样就意味着我们的 Consul 服务启动成功了。
 
@@ -4296,11 +4458,11 @@ public class HelloController {
 
 这时候我们再次在浏览器访问地址：http://localhost:8500，显示如下：
 
-![img](SpringCloud.assets/consol_producer.png)
+![img](../media/pictures/SpringCloud.assets/consol_producer.png)
 
 我们发现页面多了 service-producer 服务，点击进去后页面显示有两个服务提供者：
 
-![img](SpringCloud.assets/consol_producer-2.png)
+![img](../media/pictures/SpringCloud.assets/consol_producer-2.png)
 
 这样服务提供者就准备好了。
 
@@ -4443,7 +4605,7 @@ https://github.com/ityouknow/awesome-spring-cloud
 
 **产品截图**
 
-![img](SpringCloud.assets/awesome-spring-cloud.png)
+![img](../media/pictures/SpringCloud.assets/awesome-spring-cloud.png)
 
 ### 2、 [PiggyMetrics](https://github.com/sqshq/PiggyMetrics)
 
@@ -4451,11 +4613,11 @@ https://github.com/ityouknow/awesome-spring-cloud
 
 PiggyMetrics 被分解为三个核心微服务。这些服务都是围绕某些业务能力组织的可独立部署的应用程序。
 
-![img](SpringCloud.assets/PiggyMetrics_sercive.png)
+![img](../media/pictures/SpringCloud.assets/PiggyMetrics_sercive.png)
 
 PiggyMetrics 的项目架构图
 
-![img](SpringCloud.assets/PInfrastructure.png)
+![img](../media/pictures/SpringCloud.assets/PInfrastructure.png)
 
 **项目主页**
 
@@ -4463,7 +4625,7 @@ https://github.com/sqshq/PiggyMetrics
 
 **产品截图**
 
-![img](SpringCloud.assets/piggyMetrics.png)
+![img](../media/pictures/SpringCloud.assets/piggyMetrics.png)
 
 ### 3、 [spaascloud-master](https://github.com/paascloud/paascloud-master)
 
@@ -4483,7 +4645,7 @@ https://github.com/paascloud/paascloud-master
 
 **产品截图**
 
-![img](SpringCloud.assets/paascloud.png)
+![img](../media/pictures/SpringCloud.assets/paascloud.png)
 
 ### 4、 [Cloud-Admin](https://gitee.com/minull/ace-security)
 
@@ -4495,7 +4657,7 @@ https://gitee.com/minull/ace-security
 
 **项目架构**
 
-![img](SpringCloud.assets/ace-security.png)
+![img](../media/pictures/SpringCloud.assets/ace-security.png)
 
 ### 5、 [spring-cloud-rest-tcc](https://github.com/prontera/spring-cloud-rest-tcc)
 
@@ -4507,7 +4669,7 @@ https://github.com/prontera/spring-cloud-rest-tcc
 
 **项目架构**
 
-![img](SpringCloud.assets/spring-cloud-rest-tcc.png)
+![img](../media/pictures/SpringCloud.assets/spring-cloud-rest-tcc.png)
 
 ### 6、 [pig](https://gitee.com/log4j/pig)
 
@@ -4523,7 +4685,7 @@ https://gitee.com/log4j/pig
 
 **产品截图**
 
-![img](SpringCloud.assets/ping.png)
+![img](../media/pictures/SpringCloud.assets/ping.png)
 
 ### 7、 [xxpay-master](https://gitee.com/jmdhappy/xxpay-master)
 
@@ -4539,7 +4701,7 @@ https://gitee.com/jmdhappy/xxpay-master
 
 **产品截图**
 
-![img](SpringCloud.assets/xxpay.png)
+![img](../media/pictures/SpringCloud.assets/xxpay.png)
 
 ### 8、 [spring-boot-cloud](https://github.com/zhangxd1989/spring-boot-cloud)
 
@@ -4551,7 +4713,7 @@ https://github.com/zhangxd1989/spring-boot-cloud
 
 **项目架构**
 
-![img](SpringCloud.assets/spring-boot-cloud.jpg)
+![img](../media/pictures/SpringCloud.assets/spring-boot-cloud.jpg)
 
 ### 9、 [FCat](https://gitee.com/xfdm/FCat)
 
@@ -4563,7 +4725,7 @@ https://gitee.com/xfdm/FCat
 
 **项目架构**
 
-![img](SpringCloud.assets/FCat.png)
+![img](../media/pictures/SpringCloud.assets/FCat.png)
 
 ### 10、 [spring-cloud-examples](https://github.com/ityouknow/spring-cloud-examples)
 
@@ -4575,7 +4737,7 @@ https://github.com/ityouknow/spring-cloud-examples
 
 **项目截图**
 
-![img](SpringCloud.assets/spring-cloud-examples.png)
+![img](../media/pictures/SpringCloud.assets/spring-cloud-examples.png)
 
 > 应该还有更多优秀的 Spring Cloud 开源项目，目前仅发现这些，也希望大家多反馈一些优秀的 Spring Cloud 开源项目，统一将这些项目收集到 awesome-spring-cloud 中，方便后续大家学习查找。
 
@@ -4597,7 +4759,7 @@ Spring Cloud Gateway 作为 Spring Cloud 生态系统中的网关，目标是替
 
 **工作流程：**
 
-![img](SpringCloud.assets/spring-cloud-gateway.png)
+![img](../media/pictures/SpringCloud.assets/spring-cloud-gateway.png)
 
 客户端向 Spring Cloud Gateway 发出请求。如果 Gateway Handler Mapping 中找到与请求相匹配的路由，将其发送到 Gateway Web Handler。Handler 再通过指定的过滤器链来将请求发送到我们实际的服务执行业务逻辑，然后返回。 过滤器之间用虚线分开是因为过滤器可能会在发送代理请求之前（“pre”）或之后（“post”）执行业务逻辑。
 
@@ -4681,7 +4843,7 @@ spring:
 
 上面这段配置的意思是，配置了一个 id 为 neo_route 的路由规则，当访问地址 `http://localhost:8080/spring-cloud`时会自动转发到地址：`http://www.ityouknow.com/spring-cloud`。配置完成启动项目即可在浏览器访问进行测试，当我们访问地址`http://localhost:8080/spring-cloud` 时会展示页面展示如下：
 
-![img](SpringCloud.assets/spring-cloud-gateway1.png)
+![img](../media/pictures/SpringCloud.assets/spring-cloud-gateway1.png)
 
 证明页面转发成功。
 
@@ -4724,7 +4886,7 @@ Predicate 来源于 Java 8，是 Java 8 中引入的一个函数，Predicate 接
 
 在 Spring Cloud Gateway 中 Spring 利用 Predicate 的特性实现了各种路由匹配规则，有通过 Header、请求参数等不同的条件来进行作为条件匹配到对应的路由。网上有一张图总结了 Spring Cloud 内置的几种 Predicate 的实现。
 
-![img](SpringCloud.assets/spring-cloud-gateway3.png)
+![img](../media/pictures/SpringCloud.assets/spring-cloud-gateway3.png)
 
 说白了 Predicate 就是为了实现一组匹配规则，方便让请求过来找到对应的 Route 进行处理，接下来我们接下 Spring Cloud GateWay 内置几种 Predicate 的使用。
 
@@ -5450,7 +5612,7 @@ Retry GatewayFilter 通过这四个参数来控制重试机制： retries, statu
 
 
 
-## SpringCloud常见问题
+# SpringCloud常见问题
 
 https://blog.csdn.net/hjq_ku/article/details/89504229  
 
